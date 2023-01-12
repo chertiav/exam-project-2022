@@ -16,12 +16,12 @@ export const NavContainer = ({ data }) => {
 			<img src={`${CONSTANTS.APP_CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt="menu" />
 			<ul>
 				{item.items.map((item) =>
-					<Link key={item} to={CONSTANTS.APP_CONSTANTS.PATH_NOTN_FOUND}>
-						<li>{item.toUpperCase()}</li>
+					<Link key={item.title} to={item.linkPage}>
+						<li>{item.title.toUpperCase()}</li>
 					</Link>
 				)}
-				<Link key={item.last} to={CONSTANTS.APP_CONSTANTS.PATH_NOTN_FOUND}>
-					<li className={styles.last}>{item.last.toUpperCase()}</li>
+				<Link key={item.last.title} to={item.last.linkPage}>
+					<li className={styles.last}>{item.last.title.toUpperCase()}</li>
 				</Link>
 			</ul>
 		</li>

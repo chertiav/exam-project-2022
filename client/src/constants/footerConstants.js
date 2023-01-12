@@ -1,4 +1,5 @@
 import { HEADER_CONSTANTS } from './headerConstants'
+import { APP_CONSTANTS } from './appConstants'
 
 const nameStartPrice = 199;
 const logoStartPrice = 299;
@@ -7,45 +8,45 @@ export const FOOTER_CONSTANTS = {
 		{
 			title: 'SQUADHELP',
 			items: [
-				'About',
-				'Contact',
-				'How It Works?',
-				'Testimonials',
-				'Our Work',
+				{ title: 'About', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Contact', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'How It Works', linkPage: '/how-it-works' },
+				{ title: 'Testimonials', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Our Work', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'RESOURCES',
 			items: [
-				'How It Works',
-				'Become a Creative',
-				'Business Name Generator',
-				'Discussion Forum',
-				'Blog',
-				'Download eBook',
-				'Pricing',
-				'Help & FAQs',
+				{ title: 'How It Works', linkPage: '/how-it-works' },
+				{ title: 'Become a Creative', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Business Name Generator', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Discussion Forum', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Blog', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Download eBook', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Pricing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Help & FAQs', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'OUR SERVICES',
 			items: [
-				'Naming',
-				'Logo Design',
-				'Taglines',
-				'Premium Names For Sale',
-				'Creative Owned Names For Sale',
-				'Audience Testing',
-				'Trademark Research & Filling',
-				'Managed Agency Service',
+				{ title: 'Naming', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Logo Design', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Taglines', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Premium Names For Sale', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Creative Owned Names For Sale', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Audience Testing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Trademark Research & Filling', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Managed Agency Service', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'LEGAL',
 			items: [
-				'Terms of Service',
-				'Privacy Policy',
-				'Cookie Policy',
+				{ title: 'Terms of Service', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Privacy Policy', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Cookie Policy', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 	],

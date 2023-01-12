@@ -11,9 +11,9 @@ export const FooterMain = () => {
 			<h4>{item.title}</h4>
 			{item.items.map((footerItem) =>
 				<Link
-					key={footerItem}
-					to={CONSTANTS.APP_CONSTANTS.PATH_NOTN_FOUND}
-				>{footerItem}
+					key={footerItem.title}
+					to={footerItem.linkPage}
+				>{footerItem.title}
 				</Link>
 			)}
 		</div>

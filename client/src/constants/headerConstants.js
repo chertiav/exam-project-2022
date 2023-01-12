@@ -1,3 +1,5 @@
+import { APP_CONSTANTS } from './appConstants';
+
 export const HEADER_CONSTANTS = {
 	CONTACTS: {
 		TEL: '(877) 355-3585',
@@ -11,64 +13,64 @@ export const HEADER_CONSTANTS = {
 		{
 			title: 'NAME IDEAS',
 			items: [
-				'Beayty',
-				'Consulting',
-				'E-commerce',
-				'Fashion & Clothing',
-				'Finance',
-				'Real Estate',
-				'Tech',
+				{ title: 'Beayty', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Consulting', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'E-commerce', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Fashion & Clothing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Finance', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Real Estate', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Tech', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
-			last: 'More Categories'
+			last: { title: 'More Categories', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND }
 		},
 		{
 			title: 'CONTESTS',
 			items: [
-				'How it Works',
-				'Pricing',
-				'Agency Service',
-				'Active Contests',
-				'Winners',
-				'Leaderboard',
+				{ title: 'How it Works', linkPage: '/how-it-works' },
+				{ title: 'Pricing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Agency Service', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Active Contests', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Winners', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Leaderboard', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
-			last: 'Become a Creative'
+			last: { title: 'Become a Creative', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		},
 		{
 			title: 'OUR WORK',
 			items: [
-				'Names',
-				'Taglines',
-				'Logos',
+				{ title: 'Names', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Taglines', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Logos', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
-			last: 'Testimonials'
+			last: { title: 'Testimonials', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		},
 		{
 			title: 'NAMES FOR SALE',
 			items: [
-				'Popular Names',
-				'Short Names',
-				'Intriguing Names',
-				'Names by Category',
-				'Visual Name Search',
+				{ title: 'Popular Names', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Short Names', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Intriguing Names', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Names by Category', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'TeVisual Name Searchstimonials', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
-			last: 'Sell Your Domains'
+			last: { title: 'Sell Your Domains', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		},
 		{
 			title: 'BLOG',
 			items: [
-				'Ultimate Naming Guide',
-				'Poetic Devices in Business Naming',
-				'Crowded Bar Theory',
+				{ title: 'Ultimate Naming Guide', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Poetic Devices in Business Naming', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Crowded Bar Theory', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
-			last: 'All Articles'
+			last: { title: 'All Articles', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		},
 	],
 	MENU_USER_INFO: {
 		mainElementMenu: [
 			{ title: 'View Dashboard', linkPage: '/dashboard' },
 			{ title: 'My Account', linkPage: '/account' },
-			{ title: 'Messages', linkPage: '/not-found' },
-			{ title: 'Affiliate Dashboard', linkPage: '/not-found' },
+			{ title: 'Messages', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+			{ title: 'Affiliate Dashboard', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		],
 		lastElementMenu: 'Logout',
 	}
