@@ -1,44 +1,47 @@
 import React from 'react';
 import { toast } from 'react-toastify';
+//============================================
 import WebSocket from './WebSocket';
-import Notification from '../../../components/Notification/Notification';
+import * as CONTANTS from '../../../constants';
+import * as Components from '../../../components';
 
 class NotificationSocket extends WebSocket {
-  constructor(dispatch, getState, room) {
-    super(dispatch, getState, room);
-  }
 
-    anotherSubscribes = () => {
-      this.onEntryCreated();
-      this.onChangeMark();
-      this.onChangeOfferStatus();
-    };
+	anotherSubscribes = () => {
+		this.onEntryCreated();
+		this.onChangeMark();
+		this.onChangeOfferStatus();
+	};
 
-    onChangeMark = () => {
-      this.socket.on('changeMark', () => {
-        toast('Someone liked your offer');
-      });
-    };
+	onChangeMark = () => {
+		this.socket.on(CONTANTS.CHAT_CONSTANTS.NOTIFICATION_CHANGE_MARK, () => {
+			toast('Someone liked your offer');
+		});
+	};
 
-    onChangeOfferStatus = () => {
-      this.socket.on('changeOfferStatus', (message) => {
-        toast(<Notification message={message.message} contestId={message.contestId} />);
-      });
-    };
+	onChangeOfferStatus = () => {
+		this.socket.on(CONTANTS.CHAT_CONSTANTS.NOTIFICATION_CHANGE_OFFER_STATUS, (message) => {
+			toast(
+				<Components.UI.Notification
+					message={message.message}
+					contestId={message.contestId} />
+			);
+		});
+	};
 
-    onEntryCreated = () => {
-      this.socket.on('onEntryCreated', () => {
-        toast('New Entry');
-      });
-    };
+	onEntryCreated = () => {
+		this.socket.on(CONTANTS.CHAT_CONSTANTS.NOTIFICATION_ENTRY_CREATED, () => {
+			toast('New Entry');
+		});
+	};
 
-    subscribe = (id) => {
-      this.socket.emit('subscribe', id);
-    };
+	subscribe = (id) => {
+		this.socket.emit(CONTANTS.CHAT_CONSTANTS.SOCKET_SUBSCRIBE, id);
+	};
 
-    unsubsctibe = (id) => {
-      this.socket.emit('unsubscribe', id);
-    }
+	unsubscribe = (id) => {
+		this.socket.emit(CONTANTS.CHAT_CONSTANTS.SOCKET_UNSUBSCRIBE, id);
+	}
 }
 
 export default NotificationSocket;

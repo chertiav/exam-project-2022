@@ -1,78 +1,78 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
+import {
+	BrowserRouter as Router, Route, Routes, Navigate,
+} from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import LoginPage from './pages/LoginPage/LoginPage';
-import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
-import Payment from './pages/Payment/Payment';
-import StartContestPage from './pages/StartContestPage/StartContestPage';
-import Dashboard from './pages/Dashboard/Dashboard';
-import PrivateHoc from './components/PrivateHoc/PrivateHoc';
-import NotFound from './components/NotFound/NotFound';
-import Home from './pages/Home/Home';
-import OnlyNotAuthorizedUserHoc from './components/OnlyNotAuthorizedUserHoc/OnlyNotAuthorizedUserHoc';
-import ContestPage from './pages/ContestPage/ContestPage';
-import UserProfile from './pages/UserProfile/UserProfile';
 import 'react-toastify/dist/ReactToastify.css';
-import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
-import CONSTANTS from './constants';
+//====================================================
 import browserHistory from './browserHistory';
-import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
+import { controller } from './api/ws/socketController';
+import * as Pages from './pages';
+import * as CustomRoute from './routes'
+import * as CONSTANTS from './constants';
+import * as Components from './components';
+import * as utils from './utils';
 
-class App extends Component {
-  render() {
-    return (
-      <Router history={browserHistory}>
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnVisibilityChange
-          draggable
-          pauseOnHover
-        />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={OnlyNotAuthorizedUserHoc(LoginPage)} />
-          <Route exact path="/registration" component={OnlyNotAuthorizedUserHoc(RegistrationPage)} />
-          <Route exact path="/payment" component={PrivateHoc(Payment)} />
-          <Route exact path="/startContest" component={PrivateHoc(StartContestPage)} />
-          <Route
-            exact
-            path="/startContest/nameContest"
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.NAME_CONTEST,
-              title: 'Company Name',
-            })}
-          />
-          <Route
-            exact
-            path="/startContest/taglineContest"
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.TAGLINE_CONTEST,
-              title: 'TAGLINE',
-            })}
-          />
-          <Route
-            exact
-            path="/startContest/logoContest"
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.LOGO_CONTEST,
-              title: 'LOGO',
-            })}
-          />
-          <Route exact path="/dashboard" component={PrivateHoc(Dashboard)} />
-          <Route exact path="/contest/:id" component={PrivateHoc(ContestPage)} />
-          <Route exact path="/account" component={PrivateHoc(UserProfile)} />
-          <Route component={NotFound} />
-        </Switch>
-        <ChatContainer />
-      </Router>
-    );
-  }
-}
+const App = () => {
+
+	const { userStore: { data } } = useSelector(state => state);
+	const auth = utils.function.useAuth();
+
+	return (
+		<Router history={browserHistory}>
+			<ToastContainer
+				position="top-center" autoClose={5000}
+				hideProgressBar newestOnTop={false}
+				closeOnClick rtl={false} pauseOnVisibilityChange
+				draggable pauseOnHover
+			/>
+			<Routes>
+				<Route path='/' element={<Pages.Layout />}>
+					<Route index element={<Pages.Home />} />
+					<Route path='/not-found' element={<Pages.NotFound />} />
+					<Route element={<CustomRoute.OnlyNotAuthorizedUserRoute />}>
+						<Route path='/login' element={<Pages.Login />} />
+						<Route path='/registration' element={<Pages.Registration />} />
+					</Route>
+					<Route element={<CustomRoute.ProtectedRoute />}>
+						<Route path='/account' element={<Pages.UserProfile />} />
+						<Route path='/dashboard' element={<Pages.Dashboard />} />
+						{data?.role !== 'moderator' &&
+							<>
+								<Route path='/contest/:id' element={<Pages.Contest />} />
+								<Route path="/payment" element={<Pages.Payment />} />
+								<Route path='/startContest' >
+									<Route index element={<Pages.StartContest />} />
+									<Route path='nameContest' element={
+										<Pages.ContestCreation
+											title={'Company Name'}
+											contestType={CONSTANTS.APP_CONSTANTS.NAME_CONTEST}
+										/>} />
+									<Route path='taglineContest' element={
+										<Pages.ContestCreation
+											title={'TAGLINE'}
+											contestType={CONSTANTS.APP_CONSTANTS.TAGLINE_CONTEST}
+										/>} />
+									<Route path='logoContest' element={
+										<Pages.ContestCreation
+											title={'LOGO'}
+											contestType={CONSTANTS.APP_CONSTANTS.LOGO_CONTEST}
+										/>} />
+								</Route>
+							</>
+						}
+					</Route>
+					<Route path="*" element={<Navigate to="/" replace={true} />} />
+				</Route>
+			</Routes>
+			{auth
+				? <Components.ChatContainer />
+				: data?.id
+					? controller.unsubscribe(data.id)
+					: null
+			}
+		</Router >
+	);
+};
 
 export default App;

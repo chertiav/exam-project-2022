@@ -1,0 +1,66 @@
+.userInfo
+	min-width: 50px
+	display: flex
+	justify-content: center
+	align-items: center
+	padding: 10px 15px
+	cursor: pointer
+	border-right: 1px solid #ebebeb
+
+	&:hover
+		span
+			color: #f27e51
+		background: #f9fafb
+		ul
+			display: block
+			position: absolute
+			top: 71px
+
+	span
+		padding: 0
+		margin-left: 5px
+		color: #495d8b
+		font-size: 16px
+		border: none
+		font-family: sans-serif
+
+	ul
+		border: 1px solid #eee
+		z-index: 500
+		list-style: none
+		background: white
+		width: 150px
+		display: none
+
+		a
+			text-decoration: none
+
+		li
+			font-size: 12px
+			color: #333
+			box-sizing: border-box
+			width: 100%
+			padding: 10px 15px
+			display: flex
+			justify-content: flex-start
+
+			&:hover
+				background: #f9fafb
+				color: #f27e51
+
+		.last
+			border-top: 1px solid aquamarine
+
+
+.userImage
+	width: 20px
+	height: 20px
+	border-radius: 10px
+
+.emailIcon
+	padding: 10px 15px
+	border-right: 1px solid #ebebeb
+
+
+	&:hover
+		background: #f9fafb

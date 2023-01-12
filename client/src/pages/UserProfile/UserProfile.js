@@ -1,85 +1,52 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import classNames from 'classnames';
-import Header from '../../components/Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
+//==================================
 import styles from './UserProfile.module.sass';
-import CONSTANTS from '../../constants';
-import UserInfo from '../../components/UserInfo/UserInfo';
-import PayForm from '../../components/PayForm/PayForm';
-import { cashOut, changeProfileModeView, clearPaymentStore } from '../../actions/actionCreator';
-import Error from '../../components/Error/Error';
+import * as Components from '../../components';
+import * as CONSTANTS from '../../constants';
+import { paymentActions } from '../../store/actions';
 
-const UserProfile = (props) => {
-  const pay = (values) => {
-    const {
-      number, expiry, cvc, sum,
-    } = values;
-    props.cashOut({
-      number, expiry, cvc, sum,
-    });
-  };
+export const UserProfile = () => {
 
-  const {
-    balance, role, profileModeView, changeProfileModeView, error, clearPaymentStore,
-  } = props;
-  return (
-    <div>
-      <Header />
-      <div className={styles.mainContainer}>
-        <div className={styles.aside}>
-          <span className={styles.headerAside}>Select Option</span>
-          <div className={styles.optionsContainer}>
-            <div
-              className={classNames(styles.optionContainer, { [styles.currentOption]: profileModeView === CONSTANTS.USER_INFO_MODE })}
-              onClick={() => changeProfileModeView(CONSTANTS.USER_INFO_MODE)}
-            >
-              UserInfo
-            </div>
-            {role === CONSTANTS.CREATOR && (
-              <div
-                className={classNames(styles.optionContainer, { [styles.currentOption]: profileModeView === CONSTANTS.CASHOUT_MODE })}
-                onClick={() => changeProfileModeView(CONSTANTS.CASHOUT_MODE)}
-              >
-                Cashout
-              </div>
-            )}
-          </div>
-        </div>
-        {
-                    profileModeView === CONSTANTS.USER_INFO_MODE
-                      ? <UserInfo />
-                      : (
-                        <div className={styles.container}>
-                          {parseInt(balance) === 0
-                            ? <span className={styles.notMoney}>There is no money on your balance</span>
-                            : (
-                              <div>
-                                {error
-                                    && <Error data={error.data} status={error.status} clearError={clearPaymentStore} />}
-                                <PayForm sendRequest={pay} />
-                              </div>
-                            )}
-                        </div>
-                      )
-                }
-      </div>
-    </div>
-  );
+	const {
+		userStore: { data },
+		userProfile: { profileModeView },
+		payment: { error }
+	} = useSelector(state => state);
+	const dispatch = useDispatch();
+
+	const cashOut = (data) =>
+		dispatch(paymentActions.getCashOutActions(data));
+
+	const clearPaymentStore = () =>
+		dispatch(paymentActions.clearPaymentStore());
+
+	const pay = (values) => {
+		const { number, expiry, cvc, sum } = values;
+		cashOut({ number, expiry, cvc, sum });
+	};
+
+	return (
+		<div className={styles.mainContainer}>
+			< Components.UserOptionsBlock />
+			{profileModeView === CONSTANTS.USER_PROFILE.USER_INFO_MODE
+				? < Components.UserInfo />
+				: (
+					<div className={styles.container}>
+						{parseInt(data.balance) === 0
+							? <span className={styles.notMoney}>There is no money on your balance</span>
+							: (<div>
+								{error &&
+									<Components.UI.Error
+										data={error.data}
+										status={error.status}
+										clearError={clearPaymentStore} />}
+								<Components.PayForm sendRequest={pay} />
+							</div>)
+						}
+					</div>
+				)
+			}
+		</div >
+	);
 };
-
-const mapStateToProps = (state) => {
-  const { balance, role } = state.userStore.data;
-  const { profileModeView } = state.userProfile;
-  const { error } = state.payment;
-  return {
-    balance, role, profileModeView, error,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => ({
-  cashOut: (data) => dispatch(cashOut(data)),
-  changeProfileModeView: (data) => dispatch(changeProfileModeView(data)),
-  clearPaymentStore: () => dispatch(clearPaymentStore()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

@@ -4,21 +4,20 @@
 ## Run application in DEV mode ##
 #################################
 
-
 started_at=$(date +"%s")
 
 echo "-----> Provisioning containers"
-docker-compose --file docker-compose-dev.yaml up
+docker compose --file docker-compose-dev.yaml up
 echo ""
 
 # Run Sequalize's migrations.
 echo "-----> Running application migrations"
-docker exec -it squadhelp_server-dev_1 sequelize db:migrate
-echo ""
+docker exec -it exam-project-server-dev-1 sequelize db:migrate
+echo "<----- Migrate is done"
 
 # Run Sequalize's seeds.
 echo "-----> Running application seeds"
-docker exec -it squadhelp_server-dev_1 sequelize db:seed:all
+docker exec -it exam-project-server-dev-1 sequelize db:seed:all
 echo "<----- Seeds created"
 
 ended_at=$(date +"%s")

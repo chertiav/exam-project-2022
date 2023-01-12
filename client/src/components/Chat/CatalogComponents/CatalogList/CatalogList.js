@@ -1,44 +1,43 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import Catalog from '../Catalog/Catalog';
+import { useDispatch } from 'react-redux';
+//===========================================
 import styles from '../CatalogListContainer/CatalogListContainer.module.sass';
-import { changeShowModeCatalog, deleteCatalog } from '../../../../actions/actionCreator';
+import { chatActions } from '../../../../store/actions';
+import * as Components from '../../../';
 
-const CatalogList = (props) => {
-  const goToCatalog = (event, catalog) => {
-    props.changeShowModeCatalog(catalog);
-    event.stopPropagation();
-  };
+export const CatalogList = ({ catalogList }) => {
 
-  const deleteCatalog = (event, catalogId) => {
-    props.deleteCatalog({ catalogId });
-    event.stopPropagation();
-  };
+	const dispatch = useDispatch();
 
-  const getListCatalog = () => {
-    const { catalogList } = props;
-    const elementList = [];
-    catalogList.forEach((catalog) => {
-      elementList.push(<Catalog
-        catalog={catalog}
-        key={catalog._id}
-        deleteCatalog={deleteCatalog}
-        goToCatalog={goToCatalog}
-      />);
-    });
-    return elementList.length ? elementList : <span className={styles.notFound}>Not found</span>;
-  };
+	const goToCatalog = (event, catalog) => {
+		dispatch(chatActions.changeShowModeCatalog(catalog));
+		event.stopPropagation();
+	};
 
-  return (
-    <div className={styles.listContainer}>
-      {getListCatalog()}
-    </div>
-  );
+	const deleteCatalog = (event, catalogId) => {
+		dispatch(chatActions.deleteCatalogAction(catalogId));
+		event.stopPropagation();
+	};
+
+	const getListCatalog = () => {
+		const elementList = catalogList.map((catalog) =>
+			<Components.Catalog
+				key={catalog._id}
+				catalog={catalog}
+				deleteCatalog={deleteCatalog}
+				goToCatalog={goToCatalog}
+			/>
+		);
+		return (
+			elementList.length
+				? elementList
+				: <span className={styles.notFound}>Not found</span>
+		)
+	};
+
+	return (
+		<div className={styles.listContainer}>
+			{getListCatalog()}
+		</div>
+	);
 };
-
-const mapDispatchToProps = (dispatch) => ({
-  changeShowModeCatalog: (data) => dispatch(changeShowModeCatalog(data)),
-  deleteCatalog: (data) => dispatch(deleteCatalog(data)),
-});
-
-export default connect(null, mapDispatchToProps)(CatalogList);

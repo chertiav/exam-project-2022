@@ -1,0 +1,22 @@
+@mixin innerContainer
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	width: 100%
+	padding: 40px 0 30px 0
+
+
+.greyContainer
+	@include innerContainer
+	background-color: #FAFAFA
+
+
+.whiteContainer
+	@include innerContainer
+	background-color: white
+
+
+.greenContainer
+	@include innerContainer
+	background-color: #28D2D0

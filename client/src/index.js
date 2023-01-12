@@ -1,13 +1,17 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+//========================================
 import './index.css';
-import Setup from './boot/setup';
-import * as serviceWorker from './serviceWorker';
+import { initSocket } from './api/ws/socketController';
+import App from './App';
+import configureStore from './store';
 
-ReactDOM.render(<Setup />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = initSocket(configureStore());
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+root.render(
+	<Provider store={store}>
+		<App />
+	</Provider>
+);

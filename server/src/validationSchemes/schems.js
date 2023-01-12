@@ -1,32 +1,37 @@
-const yup = require('yup');
+const Yup = require('yup');
 
-module.exports.registrationSchem = yup.object().shape({
-  firstName: yup.string().required().min(1),
-  lastName: yup.string().required().min(1),
-  displayName: yup.string().required().min(1),
-  email: yup.string().email().required().min(4),
-  password: yup.string().required().min(1),
-  role: yup.string().matches(/(customer|creator)/).required(),
+module.exports.registrationSchem = Yup.object().shape({
+	firstName: Yup.string().required().min(1),
+	lastName: Yup.string().required().min(1),
+	displayName: Yup.string().required().min(1),
+	email: Yup.string().email().required().min(4),
+	password: Yup.string().required().min(1),
+	role: Yup.string().matches(/(customer|creator)/).required(),
 });
 
-module.exports.loginSchem = yup.object().shape({
-  email: yup.string().email().required().min(4),
-  password: yup.string().required().min(1),
+module.exports.loginSchem = Yup.object().shape({
+	email: Yup.string().email().required().min(4),
+	password: Yup.string().required().min(1),
 });
 
-module.exports.contestSchem = yup.object().shape({
-  contestType: yup.string().matches(/(name|logo|tagline)/).required(),
-  fileName: yup.string().min(1),
-  originalFileName: yup.string().min(1),
-  title: yup.string().required().min(1),
-  typeOfName: yup.string().min(1),
-  industry: yup.string().required().min(1),
-  focusOfWork: yup.string().required().min(1),
-  targetCustomer: yup.string().required().min(1),
-  styleName: yup.string().min(1),
-  nameVenture: yup.string().min(1),
-  typeOfTagline: yup.string().min(1),
-  brandStyle: yup.string().min(1),
+module.exports.contestSchem = Yup.object().shape({
+	contestType: Yup.string().matches(/(name|logo|tagline)/).required(),
+	fileName: Yup.string().min(1),
+	originalFileName: Yup.string().min(1),
+	title: Yup.string().required().min(1),
+	typeOfName: Yup.string().min(1),
+	industry: Yup.string().required().min(1),
+	focusOfWork: Yup.string().required().min(1),
+	targetCustomer: Yup.string().required().min(1),
+	styleName: Yup.string().min(1),
+	nameVenture: Yup.string().min(1),
+	typeOfTagline: Yup.string().min(1),
+	brandStyle: Yup.string().min(1),
+});
+
+module.exports.paginationSchem = Yup.object().shape({
+	limit: Yup.number().min(1).max(8).required(),
+	offset: Yup.number().required(),
 });
 
 

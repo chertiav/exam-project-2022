@@ -1,61 +1,64 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import classNames from 'classnames';
-import CONSTANTS from '../../../../constants';
-import {
-  changeTypeOfChatAdding,
-  changeShowAddChatToCatalogMenu,
-  getCatalogList,
-} from '../../../../actions/actionCreator';
+//========================================
 import styles from './CatalogCreation.module.sass';
-import AddToCatalog from '../AddToCatalog/AddToCatalog';
-import CreateCatalog from '../CreateCatalog/CreateCatalog';
+import * as CONSTANTS from '../../../../constants';
+import * as Components from '../../../';
+import { chatActions } from '../../../../store/actions';
 
-class CatalogCreation extends React.Component {
-  componentDidMount() {
-    this.props.getCatalogList();
-  }
+export const CatalogCreation = () => {
 
-  render() {
-    const {
-      changeTypeOfChatAdding, catalogCreationMode, changeShowAddChatToCatalogMenu, isFetching,
-    } = this.props;
-    const { ADD_CHAT_TO_OLD_CATALOG, CREATE_NEW_CATALOG_AND_ADD_CHAT } = CONSTANTS;
-    return (
-      <>
-        {
-                    !isFetching && (
-                    <div className={styles.catalogCreationContainer}>
-                      <i className="far fa-times-circle" onClick={() => changeShowAddChatToCatalogMenu()} />
-                      <div className={styles.buttonsContainer}>
-                        <span
-                          onClick={() => changeTypeOfChatAdding(ADD_CHAT_TO_OLD_CATALOG)}
-                          className={classNames({ [styles.active]: catalogCreationMode === ADD_CHAT_TO_OLD_CATALOG })}
-                        >
-                          Old
-                        </span>
-                        <span
-                          onClick={() => changeTypeOfChatAdding(CREATE_NEW_CATALOG_AND_ADD_CHAT)}
-                          className={classNames({ [styles.active]: catalogCreationMode === CREATE_NEW_CATALOG_AND_ADD_CHAT })}
-                        >
-                          New
-                        </span>
-                      </div>
-                      {catalogCreationMode === CREATE_NEW_CATALOG_AND_ADD_CHAT ? <CreateCatalog /> : <AddToCatalog />}
-                    </div>
-                    )
-                }
-      </>
-    );
-  }
-}
+	const {
+		catalogCreationMode, isFetching
+	} = useSelector((state) => state.chatStore);
+	const dispatch = useDispatch();
+	const { CHAT_CONSTANTS: {
+		ADD_CHAT_TO_OLD_CATALOG, CREATE_NEW_CATALOG_AND_ADD_CHAT
+	} } = CONSTANTS;
 
-const mapStateToProps = (state) => state.chatStore;
+	const changeTypeOfChatAdding = (data) =>
+		dispatch(chatActions.changeTypeOfChatAdding(data));
+	const changeShowAddChatToCatalogMenu = () =>
+		dispatch(chatActions.changeShowAddChatToCatalogMenu());
 
-const mapDispatchToProps = (dispatch) => ({
-  changeTypeOfChatAdding: (data) => dispatch(changeTypeOfChatAdding(data)),
-  changeShowAddChatToCatalogMenu: () => dispatch(changeShowAddChatToCatalogMenu()),
-  getCatalogList: () => dispatch(getCatalogList()),
-});
+	useEffect(() => {
+		dispatch(chatActions.getCatalogListAction())
+	}, [dispatch])
 
-export default connect(mapStateToProps, mapDispatchToProps)(CatalogCreation);
+	return (
+		<>
+			{!isFetching && (
+				<div className={styles.catalogCreationContainer}>
+					<i className="far fa-times-circle"
+						onClick={() => changeShowAddChatToCatalogMenu()} />
+					<div className={styles.buttonsContainer}>
+						<span
+							onClick={() =>
+								changeTypeOfChatAdding(ADD_CHAT_TO_OLD_CATALOG)}
+							className={classNames({
+								[styles.active]: catalogCreationMode === ADD_CHAT_TO_OLD_CATALOG
+							})}
+						>
+							Old
+						</span>
+						<span
+							onClick={() =>
+								changeTypeOfChatAdding(CREATE_NEW_CATALOG_AND_ADD_CHAT)}
+							className={classNames({
+								[styles.active]: catalogCreationMode === CREATE_NEW_CATALOG_AND_ADD_CHAT
+							})}
+						>
+							New
+						</span>
+					</div>
+					{catalogCreationMode === CREATE_NEW_CATALOG_AND_ADD_CHAT
+						? <Components.CreateCatalog />
+						: <Components.AddToCatalog />
+					}
+				</div>
+			)}
+		</>
+	);
+};

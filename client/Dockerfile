@@ -1,17 +1,21 @@
-FROM node:14.16.1-alpine3.13
+ARG VERSION=18-alpine
+
+FROM node:$VERSION
 
 ARG NODE_ENV="development"
 
-RUN mkdir -p ./client
+RUN mkdir ./client
 
 WORKDIR /client
 
 COPY package*.json ./
 
-COPY . .
-
-EXPOSE 5000
-
 RUN npm install
 
-CMD npm start
+RUN mkdir /client/node_modules/.cache && chmod -R 777 /client/node_modules/.cache
+
+COPY . .
+
+EXPOSE 3000
+
+CMD [ "npm", "start"]

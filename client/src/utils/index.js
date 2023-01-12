@@ -1,0 +1,1 @@
+export * as function from './functions';
