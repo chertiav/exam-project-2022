@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 
 services:
 
@@ -33,14 +33,14 @@ services:
   mongo-dev:
     image: mongo:6.0.3
     ports:
-      - "27040:27017"
+      - "27018:27017"
 
   db-dev:
     image: postgres:15.1-alpine
-    env_file:
-      - ./server/.env
+    restart: always
+    env_file: ./server/.env
     ports:
-      - "5440:5432"
+      - "5434:5432"
 
 volumes:
   server-dev:

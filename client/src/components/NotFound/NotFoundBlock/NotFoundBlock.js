@@ -16,6 +16,7 @@ export const NotFoundBlock = () => {
 			<span>Nothing found</span>
 			<span>Sorry, this page is not available</span>
 			<Button
+				className={styles.btn}
 				type="button"
 				variant="contained"
 				color="inherit"

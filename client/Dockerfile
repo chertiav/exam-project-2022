@@ -1,4 +1,4 @@
-ARG VERSION=18-alpine
+ARG VERSION=lts-hydrogen
 
 FROM node:$VERSION
 
