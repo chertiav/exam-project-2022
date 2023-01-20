@@ -93,7 +93,7 @@ export const NavBarHeaderBlueBottom = ({ menuActive }) => {
 			<div className={styles.navBox}>
 				{renderNavMenu()}
 			</div>
-			<div container className={styles.navbarFixedBottom}>
+			<div className={styles.navbarFixedBottom}>
 				<Components.AuthButtons
 					titleLogin={'Login'}
 					titleSignUp={'Sign Up'}
