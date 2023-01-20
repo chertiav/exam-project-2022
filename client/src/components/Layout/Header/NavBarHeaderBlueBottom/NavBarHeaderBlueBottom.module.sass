@@ -48,7 +48,7 @@
 				display: block
 
 		@media (max-width: 768px)
-			width: 90vw
+			width: 100%
 
 		a
 			text-decoration: none
@@ -58,6 +58,9 @@
 
 		span
 			margin-right: 0.5rem
+
+		.iconDown,.iconUp
+			margin: 0px 10px 0px 0px
 
 		.iconUp
 			display: none
@@ -115,6 +118,7 @@
 			display: flex
 			justify-content: space-between
 			align-items: center
+			box-sizing: border-box
 			padding: 0.3rem 1.5rem
 			font-size: 14px
 			line-height: 20px
@@ -132,10 +136,11 @@
 					display: block
 
 			@media (max-width: 768px)
-				width: 86.3vw
+				width: 100%
 				display: flex
 				flex-direction: row
 				flex-wrap: wrap
+				padding: 0.3rem 0 0.3rem 1.25rem
 
 			span
 				margin-right: 0.5rem
@@ -167,7 +172,7 @@
 
 .navbarFixedBottom
 	display: flex
-	flex: 1 1 1
+	box-sizing: border-box
 	width: 100%
 	flex-direction: row
 	flex-wrap: nowrap
@@ -189,7 +194,7 @@
 
 	.signInBtn, .signUpBtn
 		display: inline-block
-		width: 44%
+		width: 49%
 		text-align: center
 		padding: 8px 20px
 		font-size: 1rem
