@@ -2,6 +2,7 @@ export { Avatar } from './Avatar/Avatar';
 export { Error } from './Error/Error';
 export { Logo } from './Logo/Logo';
 export { SlideBar } from './SlideBar/SlideBar';
+export { SceletonAuth } from './SceletonAuth/SceletonAuth';
 
 export { ProgressBar } from './ProgressBar/ProgressBar';
 export { ContestHeader } from './ContestHeader/ContestHeader';

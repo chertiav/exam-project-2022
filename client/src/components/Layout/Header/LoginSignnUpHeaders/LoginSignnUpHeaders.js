@@ -5,7 +5,7 @@ import * as CONSTANTS from '../../../../constants';
 import * as Components from '../../../';
 
 
-export const LoginSignnUpHeaders = ({ data }) => {
+export const LoginSignnUpHeaders = ({ data, logOut }) => {
 
 	return (
 		<div className={styles.loginSignnUpHeaders}>
@@ -17,7 +17,7 @@ export const LoginSignnUpHeaders = ({ data }) => {
 			</div>
 			<div className={styles.userButtonsContainer}>
 				{data
-					? <Components.UserInfoMenuButtons data={data} />
+					? <Components.UserInfoMenuButtons data={data} logOut={logOut} />
 					: <Components.AuthButtons />}
 			</div>
 		</div>

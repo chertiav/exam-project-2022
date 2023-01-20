@@ -6,6 +6,14 @@ export { UserInfoMenuButtons } from './Layout/Header/UserInfoMenuButtons/UserInf
 export { FixedHeader } from './Layout/Header/FixedHeader/FixedHeader';
 export { LoginSignnUpHeaders } from './Layout/Header/LoginSignnUpHeaders/LoginSignnUpHeaders';
 export { NavContainer } from './Layout/Header/NavContainer/NavContainer';
+export { HeaderWhite } from './Layout/Header/HeaderWhite/HeaderWhite';
+export { HeaderBlue } from './Layout/Header/HeaderBlue/HeaderBlue';
+export { NavBarHeaderBlueTop } from './Layout/Header/NavBarHeaderBlueTop/NavBarHeaderBlueTop';
+export { NavBoxHeaderBlueTop } from './Layout/Header/NavBoxHeaderBlueTop/NavBoxHeaderBlueTop';
+export { MenuItemListAuth } from './Layout/Header/MenuItemListAuth/MenuItemListAuth';
+export { MenuBoxHeaderBlue } from './Layout/Header/MenuBoxHeaderBlue/MenuBoxHeaderBlue';
+export { NavBarHeaderBlueBottom } from './Layout/Header/NavBarHeaderBlueBottom/NavBarHeaderBlueBottom';
+
 //Footer
 export { FooterMain } from './Layout/Footer/FooterMain/FooterMain';
 export { FooterRegistration } from './Layout/Footer/FooterRegistration/FooterRegistration';

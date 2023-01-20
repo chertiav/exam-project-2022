@@ -1,0 +1,65 @@
+.wraper
+	background-color: #0f2e60
+
+.container
+	display: flex
+	flex-direction: row
+	justify-content: space-between
+	align-items: center
+	margin: 0 auto
+	padding: 1rem
+	max-width: 1188px
+
+	@media (min-width: 1600px)
+		max-width: 1536px
+
+	.logo
+		margin-right: 1rem
+		@media (max-width: 380px)
+			max-width: 100px
+			width: 100%
+		@media (max-width: 205px)
+			display: none
+
+	.search
+		display: flex
+		align-items: center
+		flex: 1 1 0%
+		width: 100%
+		padding: 0 0.75rem
+		margin: 0 2rem
+		border: 1px solid #ebebeb
+		appearance: none
+		border-radius: 8px
+		background-color: #fff
+
+		&:focus-within
+			border-color: #6fd1d2
+
+		@media (min-width: 1280px)
+			margin-left: 10rem
+			margin-right: 10rem
+		@media (max-width: 640px)
+			display: none
+
+		.inputHeder
+			width: 100%
+			padding: 0.5rem
+			background-color: transparent
+			border: none
+			outline: 2px solid transparent
+			outline-offset: 2px
+			color: #999999
+			font-size: 14px
+			line-height: 20px
+			font-family: "Raleway", sans-serif
+
+		.buttonSearch
+			padding: 1px 6px
+			border: none
+			background: #fff
+
+		.searchIcon
+			color: #999999
+			width: 1.373rem
+			height: 1.373rem

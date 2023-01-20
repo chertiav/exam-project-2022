@@ -1,21 +1,11 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //==============================================
 import styles from './UserInfoMenuButtons.module.sass';
-import { controller } from '../../../../api/ws/socketController';
 import * as CONSTANTS from '../../../../constants';
 import * as Components from '../../../';
 
-
-export const UserInfoMenuButtons = ({ data }) => {
-
-	const navigate = useNavigate();
-
-	const logOut = () => {
-		localStorage.removeItem(CONSTANTS.APP_CONSTANTS.ACCESS_TOKEN);
-		controller.unsubscribe(data.id);
-		navigate('/login');
-	};
+export const UserInfoMenuButtons = ({ data, logOut }) => {
 
 	const menuItem = () => {
 		return (
@@ -25,7 +15,7 @@ export const UserInfoMenuButtons = ({ data }) => {
 						<li>{menuItem.title.toUpperCase()}</li>
 					</Link>
 				)}
-				<li className={styles.last} onClick={logOut}>
+				<li className={styles.last} onClick={() => logOut(data.id)}>
 					{CONSTANTS.HEADER_CONSTANTS.MENU_USER_INFO.lastElementMenu.toUpperCase()}
 				</li>
 			</ul>
