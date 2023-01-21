@@ -115,6 +115,11 @@ export { DialogList } from './Chat/DialogComponents/DialogList/DialogList';
 export { DialogBox } from './Chat/DialogComponents/DialogBox/DialogBox';
 export { DialogListContainer } from './Chat/DialogComponents/DialogListContainer/DialogListContainer';
 
+//HowItWorks
+export { HowDoesWork } from './HowItWorks/HowDoesWork/HowDoesWork';
+export { HowDoesWorkButtonDecorate } from './HowItWorks/HowDoesWorkButtonDecorate/HowDoesWorkButtonDecorate';
+export { HowDoesWorkTitleBlock } from './HowItWorks/HowDoesWorkTitleBlock/HowDoesWorkTitleBlock';
+export { HowDoesWorkTextBlock } from './HowItWorks/HowDoesWorkTextBlock/HowDoesWorkTextBlock';
 
 //UI
 export * as UI from './UI';
