@@ -30,11 +30,11 @@ export const ChatHeader = ({ userId }) => {
 
 	const isFavorite = (userId) => {
 		const { favoriteList, participants } = chatData;
-		return favoriteList[participants.indexOf(userId)]
+		if (favoriteList) return favoriteList[participants.indexOf(userId)];
 	};
 	const isBlocked = (userId) => {
 		const { blackList, participants } = chatData;
-		return blackList[participants.indexOf(userId)];
+		if (blackList) return blackList[participants.indexOf(userId)];
 	}
 
 	return (

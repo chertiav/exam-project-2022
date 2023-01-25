@@ -1,7 +1,8 @@
 module.exports = {
 	development: {
 		database: 'squadhelp-chat',
-		host: 'mongo-dev',
+		host: 'localhost',
+		// host: 'mongo-dev',
 		port: 27017,
 	},
 	production: {

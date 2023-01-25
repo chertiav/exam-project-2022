@@ -104,7 +104,7 @@ export const Dialog = ({ userId }) => {
 			<Components.ChatHeader userId={userId} />
 			{renderMainDialog()}
 			<div ref={messagesEnd} />
-			{(chatData && chatData.blackList.includes(true))
+			{(chatData && chatData?.blackList?.includes(true))
 				? blockMessage()
 				: < Components.ChatInput />
 			}
