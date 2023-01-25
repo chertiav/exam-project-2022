@@ -9,6 +9,8 @@ export const HowItWorks = () => {
 			<Components.HowDoesWork />
 			<Components.OurServices />
 			<Components.UI.DemarcationLine borderTop={'1px solid #e7eaf3'} />
+			<Components.HowContestWork />
+			<Components.UI.DemarcationLine borderTop={'1px solid #e7eaf3'} />
 
 		</div>
 	)

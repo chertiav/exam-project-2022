@@ -3,12 +3,15 @@ import { Box, Stack } from '@mui/material';
 import { FaPlay } from 'react-icons/fa';
 //==========================
 import styles from './HowDoesWork.module.sass';
-import * as CONSTANTS from '../../../constants';
+import { HOW_IT_WORKS_CONSTANTS, APP_CONSTANTS } from '../../../constants';
 import * as Components from '../../';
 
 export const HowDoesWork = () => {
 
-	const { title, text, buttonData } = CONSTANTS.HOW_IT_WORKS_CONSTANTS.HOW_DOES_WORK_BLOCK;
+	const {
+		title, text, buttonData, titleButtonDecorate, image
+	} = HOW_IT_WORKS_CONSTANTS.HOW_DOES_WORK_BLOCK;
+	const { STATIC_IMAGES_PATH } = APP_CONSTANTS;
 
 	return (
 		<div className={styles.container}>
@@ -21,15 +24,17 @@ export const HowDoesWork = () => {
 					boxSizing={'border-box'} pr={1.875} pl={1.875}
 					className={styles.sectionContainer}
 				>
-					<Components.ButtonDecorate title={`World's #1 Naming Platform`} />
-					<Box boxSizing={'border-box'} mb={'1.5rem'}
+					<Components.ButtonDecorate title={titleButtonDecorate} />
+					<Box
+						boxSizing={'border-box'} mb={'1.5rem'}
 						fontFamily={'"Poppins",Helvetica,Arial,sans-serif'}
 						fontWeight={400} lineHeight={1.5} textAlign={'left'}
 					>
 						<Components.TitleBlock component={'h1'} title={title} />
 						<Components.TextBlock text={text} />
 					</Box>
-					<Box boxSizing={'border-box'} width={'max-content'}
+					<Box
+						boxSizing={'border-box'} width={'max-content'}
 						backgroundColor={'#377dff'} display={'flex'}
 						fontFamily={'"Poppins",Helvetica,Arial,sans-serif'}
 						fontWeight={400} lineHeight={1.5} textAlign={'left'}
@@ -37,9 +42,9 @@ export const HowDoesWork = () => {
 						className={styles.buttonBlock}
 					>
 						<a data-fancybox href={buttonData.link}>
-							<Stack direction={'row'} alignItems={'center'}
-								padding={'0.75rem 1rem'} color={'#fff'}
-								m={'0 0.5rem'}
+							<Stack
+								direction={'row'} alignItems={'center'} color={'#fff'}
+								padding={'0.75rem 1rem'} m={'0 0.5rem'}
 							>
 								<FaPlay color={'#fff'} fontSize={'14px'} />
 								<Box component={'span'} ml={'0.7rem'}>{buttonData.title}</Box>
@@ -52,10 +57,7 @@ export const HowDoesWork = () => {
 					boxSizing={'border-box'} pr={1.875} pl={1.875}
 					flex={'0 0 41.66667%'} className={styles.hiden}
 				>
-					<img
-						src={`${CONSTANTS.APP_CONSTANTS.STATIC_IMAGES_PATH}app-user.svg`}
-						alt="app-user"
-					/>
+					<img src={STATIC_IMAGES_PATH + image.title} alt={image.alt} />
 				</Stack>
 
 			</Stack>

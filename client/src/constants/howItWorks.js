@@ -2,12 +2,17 @@ import { APP_CONSTANTS } from './appConstants';
 
 export const HOW_IT_WORKS_CONSTANTS = {
 	HOW_DOES_WORK_BLOCK: {
+		titleButtonDecorate: `World's #1 Naming Platform`,
 		title: 'How Does Squadhelp Work?',
 		text: 'Squadhelp helps you come up with a great name for your business by combining the power of crowdsourcing with sophisticated technology and Agency-level validation services.',
 		buttonData: {
 			title: 'Play Video',
 			link: 'https://vimeo.com/368584367'
-		}
+		},
+		image: {
+			title: 'app-user.svg',
+			alt: 'app-user',
+		},
 	},
 	OUR_SERVICES_BLOCK: {
 		titleButtonDecorate: `Our Services`,
@@ -38,6 +43,23 @@ export const HOW_IT_WORKS_CONSTANTS = {
 				titleButton: 'Learn More',
 				linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
 			},
+		]
+	},
+	HOW_CONTEST_WORK: {
+		title: 'How Do Naming Contests Work?',
+		icon: {
+			title: 'icons/icon-27.svg',
+			alt: 'icon-41',
+		},
+		image: {
+			title: 'support-man.svg',
+			alt: 'support-man',
+		},
+		steps: [
+			'Fill out your Naming Brief and begin receiving name ideas in minutes',
+			'Rate the submissions and provide feedback to creatives.Creatives submit even more names based on your feedback.',
+			'Our team helps you test your favorite names with your target audience. We also assist with Trademark screening.',
+			'Pick a Winner. The winner gets paid for their submission.',
 		]
 	}
 }

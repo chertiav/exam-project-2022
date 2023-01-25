@@ -123,6 +123,8 @@ export { TextBlock } from './HowItWorks/TextBlock/TextBlock';
 export { ButtonCard } from './HowItWorks/ButtonCard/ButtonCard';
 export { OurServices } from './HowItWorks/OurServices/OurServices';
 export { OurServicesCard } from './HowItWorks/OurServicesCard/OurServicesCard';
+export { HowContestWork } from './HowItWorks/HowContestWork/HowContestWork';
+export { IconBox } from './HowItWorks/IconBox/IconBox';
 
 //UI
 export * as UI from './UI';
