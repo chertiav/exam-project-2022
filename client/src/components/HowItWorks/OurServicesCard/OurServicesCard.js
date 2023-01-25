@@ -1,10 +1,14 @@
 import React from 'react'
 import { Box, Stack } from '@mui/material'
 //==========================================
+import styles from './OurServicesCard.module.sass';
 import * as CONSTANTS from '../../../constants';
 import * as Components from '../../';
 
 export const OurServicesCard = ({ cards }) => {
+
+	const classesButton = { btn: styles.btn }
+
 	return (
 		cards.map((card) =>
 			<Stack key={card.titleBlock}
@@ -17,7 +21,7 @@ export const OurServicesCard = ({ cards }) => {
 				</Box>
 				<Components.TitleBlock component={'h3'} title={card.titleBlock} />
 				<Components.TextBlock textAlign={'center'} text={card.textBlock} />
-				<Components.ButtonCard title={card.titleButton} linkTo={card.linkTo} />
+				<Components.ButtonCard title={card.titleButton} linkTo={card.linkTo} classes={classesButton} />
 			</Stack >
 		)
 	)
