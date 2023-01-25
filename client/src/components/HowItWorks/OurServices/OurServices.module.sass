@@ -1,11 +1,4 @@
 .container
-	width: 100%
-	padding-right: 15px
-	padding-left: 15px
-	padding-bottom: 2rem
-	padding-top: 2rem
-	box-sizing: border-box
-
 	@media (min-width: 576px)
 		max-width: 540px
 	@media (min-width: 768px)
@@ -19,9 +12,13 @@
 	@media (min-width: 1536px)
 		max-width: 1280px
 
-	@media (max-width: 992px)
-		.hiden
-			display: none
+	a
+		text-decoration: none
+		outline: none
+
+	.cardContainer
+		@media (max-width: 768px)
+			flex-wrap: wrap
 
 	.buttonBlock
 		&:hover
@@ -31,15 +28,3 @@
 		@media (max-width: 480px)
 			width: 100%
 			justify-content: center
-
-	@media (max-width: 992px)
-		.sectionContainer
-			margin-bottom: 3rem
-
-	a
-		text-decoration: none
-		outline: none
-		color: #fff
-
-
-

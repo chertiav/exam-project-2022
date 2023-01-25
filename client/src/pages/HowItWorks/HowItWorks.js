@@ -7,6 +7,7 @@ export const HowItWorks = () => {
 	return (
 		<div className={styles.wrapper}>
 			<Components.HowDoesWork />
+			<Components.OurServices />
 		</div>
 	)
 };

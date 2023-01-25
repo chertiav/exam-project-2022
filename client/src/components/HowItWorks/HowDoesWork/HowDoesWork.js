@@ -21,14 +21,13 @@ export const HowDoesWork = () => {
 					boxSizing={'border-box'} pr={1.875} pl={1.875}
 					className={styles.sectionContainer}
 				>
-					<Components.HowDoesWorkButtonDecorate title={`World's #1 Naming Platform`} />
+					<Components.ButtonDecorate title={`World's #1 Naming Platform`} />
 					<Box boxSizing={'border-box'} mb={'1.5rem'}
 						fontFamily={'"Poppins",Helvetica,Arial,sans-serif'}
 						fontWeight={400} lineHeight={1.5} textAlign={'left'}
 					>
-						<Components.HowDoesWorkTitleBlock component={'h1'} title={title} />
-						<Components.HowDoesWorkTextBlock text={text} />
-
+						<Components.TitleBlock component={'h1'} title={title} />
+						<Components.TextBlock text={text} />
 					</Box>
 					<Box boxSizing={'border-box'} width={'max-content'}
 						backgroundColor={'#377dff'} display={'flex'}
