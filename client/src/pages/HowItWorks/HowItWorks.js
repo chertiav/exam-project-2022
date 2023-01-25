@@ -8,6 +8,8 @@ export const HowItWorks = () => {
 		<div className={styles.wrapper}>
 			<Components.HowDoesWork />
 			<Components.OurServices />
+			<Components.UI.DemarcationLine borderTop={'1px solid #e7eaf3'} />
+
 		</div>
 	)
 };
