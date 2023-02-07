@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export const TitleBlock = ({ title, component }) => {
+export const TitleBlock = ({ title, component, ...rest }) => {
 
 	const position = component !== 'h1' ? 'center' : 'left';
 
@@ -29,6 +29,7 @@ export const TitleBlock = ({ title, component }) => {
 			fontSize={getFontSize()}
 			textAlign={position}
 			fontWeight={getFontWeight()}
+			{...rest}
 		>
 			{title}
 		</Box>

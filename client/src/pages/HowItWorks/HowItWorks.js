@@ -11,6 +11,7 @@ export const HowItWorks = () => {
 			<Components.UI.DemarcationLine borderTop={'1px solid #e7eaf3'} />
 			<Components.HowContestWork />
 			<Components.UI.DemarcationLine borderTop={'1px solid #e7eaf3'} />
+			<Components.FaqTopicsBlock />
 
 		</div>
 	)

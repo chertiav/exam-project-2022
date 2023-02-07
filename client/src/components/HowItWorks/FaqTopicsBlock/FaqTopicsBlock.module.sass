@@ -1,0 +1,72 @@
+.container
+	@media (min-width: 576px)
+		max-width: 540px
+	@media (min-width: 768px)
+		max-width: 720px
+	@media (min-width: 992px)
+		max-width: 960px
+	@media only screen and (max-width: 1024px)
+		max-width: 100%
+	@media (min-width: 1200px)
+		max-width: 1200px
+	@media (min-width: 1536px)
+		max-width: 1280px
+
+	@media (max-width: 420px)
+		.h3
+			font-size: 1.55rem
+
+	@media (max-width: 992px)
+		.blockContainer
+			flex-wrap: wrap
+		.blockLeft,
+		.blockRight
+			flex: 1 1 100%
+		.blockLeft
+			margin-bottom: 3rem
+
+	a
+		text-decoration: none
+		outline: none
+		color: rgba(255,255,255,.7)
+		&:hover
+			color: rgba(255,255,255)
+
+	.topicItemHeader
+		&:hover
+			color: #0052ea
+			transition: 0.3s ease-in-out
+			background-color: #f8fafd
+
+		.itemsTitle
+			cursor: default
+
+	.arrowDown
+		transform: rotate(90deg)
+		transition: 0.3s ease-in-out
+
+	.arrowRight
+		transform: rotate(0deg)
+		transition: 0.3s ease-in-out
+
+	.downCard
+		padding: 1rem
+		transition: all 0.3s ease-out
+
+	.upCard
+		padding: 0 1rem
+		max-height: 0
+		overflow: hidden
+		transition: all 0.3s ease-out
+
+	.ul
+		list-style-type: disc
+
+	.linkWord
+		color: #377dff
+		&:hover
+			color: #0052ea
+
+
+
+

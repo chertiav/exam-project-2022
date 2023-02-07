@@ -125,6 +125,10 @@ export { OurServices } from './HowItWorks/OurServices/OurServices';
 export { OurServicesCard } from './HowItWorks/OurServicesCard/OurServicesCard';
 export { HowContestWork } from './HowItWorks/HowContestWork/HowContestWork';
 export { IconBox } from './HowItWorks/IconBox/IconBox';
+export { FaqTopicsBlock } from './HowItWorks/FaqTopicsBlock/FaqTopicsBlock';
+export { FaqTopicsBlockNav } from './HowItWorks/FaqTopicsBlockNav/FaqTopicsBlockNav';
+export { FaqTopicsBlockTopicsBox } from './HowItWorks/FaqTopicsBlockTopicsBox/FaqTopicsBlockTopicsBox';
+export { FaqTopicsBlockTopicsCard } from './HowItWorks/FaqTopicsBlockTopicsCard/FaqTopicsBlockTopicsCard';
 
 //UI
 export * as UI from './UI';
