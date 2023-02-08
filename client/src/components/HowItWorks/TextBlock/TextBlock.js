@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from '@mui/material';
 
-export const TextBlock = ({ text, textAlign }) => {
+export const TextBlock = ({ text, textAlign, ...rest }) => {
 	return (
 		<Box component={'p'}
 			boxSizing={'border-box'} mb={'1rem'}
@@ -9,6 +9,7 @@ export const TextBlock = ({ text, textAlign }) => {
 			lineHeight={1.7}
 			color={'#77838f'}
 			textAlign={textAlign}
+			{...rest}
 		>
 			{text}
 		</Box>

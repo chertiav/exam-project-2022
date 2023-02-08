@@ -50,14 +50,15 @@
 		transition: 0.3s ease-in-out
 
 	.downCard
-		padding: 1rem
-		transition: all 0.3s ease-out
+		height: auto
+		max-height: 9999px
+		overflow: hidden
+		transition: all 0.4s cubic-bezier(1,0,1,0)
 
 	.upCard
-		padding: 0 1rem
 		max-height: 0
 		overflow: hidden
-		transition: all 0.3s ease-out
+		transition: all 0.4s cubic-bezier(0,1,0,1)
 
 	.ul
 		list-style-type: disc

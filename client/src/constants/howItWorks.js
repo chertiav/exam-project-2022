@@ -285,5 +285,12 @@ export const HOW_IT_WORKS_CONSTANTS = {
 				},
 			],
 		},
-	]
+	],
+	READY_TO_GET_STARTED: {
+		imageLeft: { imageName: 'abstract-shapes-8.svg', alt: 'abstract-shapes-8', },
+		imageRight: { imageName: 'abstract-shapes-5.svg', alt: 'abstract-shapes-5', },
+		title: 'Ready to get started?',
+		text: 'Fill out your contest brief and begin receiving custom name suggestions within minutes.',
+
+	}
 }

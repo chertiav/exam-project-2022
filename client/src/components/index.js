@@ -129,6 +129,8 @@ export { FaqTopicsBlock } from './HowItWorks/FaqTopicsBlock/FaqTopicsBlock';
 export { FaqTopicsBlockNav } from './HowItWorks/FaqTopicsBlockNav/FaqTopicsBlockNav';
 export { FaqTopicsBlockTopicsBox } from './HowItWorks/FaqTopicsBlockTopicsBox/FaqTopicsBlockTopicsBox';
 export { FaqTopicsBlockTopicsCard } from './HowItWorks/FaqTopicsBlockTopicsCard/FaqTopicsBlockTopicsCard';
+export { ReadyToGetStarted } from './HowItWorks/ReadyToGetStarted/ReadyToGetStarted';
+export { ReadyToGetStartedImage } from './HowItWorks/ReadyToGetStartedImage/ReadyToGetStartedImage';
 
 //UI
 export * as UI from './UI';

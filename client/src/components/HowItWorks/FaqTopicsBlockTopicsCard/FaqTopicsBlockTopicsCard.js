@@ -20,11 +20,11 @@ export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 	const renderItemsDescrioption = (item) => {
 		switch (item.typeDescrioption) {
 			case 1: {
-				return item.descrioption;
+				return <Box p={'1rem'}>{item.descrioption}</Box>;
 			}
 			case 2: {
 				return (
-					<>
+					<Box p={'1rem'}>
 						{item.descrioptionTitle}
 						<Box component={'ul'} mb={'1rem'} pl={'2.5rem'} className={classes.ul}>
 							{item.descrioptionItems.map((itemText, index) =>
@@ -37,23 +37,23 @@ export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 								</Box>
 							)}
 						</Box>
-					</>
+					</Box>
 				);
 			}
 			case 3: {
 				return (
-					<p>
+					<Box p={'1rem'}>
 						{item.itemTextStart}
 						<Link to={item.linkTo} className={classes.linkWord}>
 							{item.linkWord}
 						</Link>
 						{item.itemTextEnd}
-					</p>
+					</Box>
 				);
 			}
 			case 4: {
 				return (
-					<>
+					<Box p={'1rem'} >
 						<p>{item.itemTextStartFirstP}</p>
 						<p>{item.itemTextStartSecondP}</p>
 						<p>{item.itemTextStartThirdP}
@@ -62,7 +62,7 @@ export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 							</Link>
 							{item.itemTextEnd}
 						</p>
-					</>
+					</Box>
 				);
 			}
 			default: break;
