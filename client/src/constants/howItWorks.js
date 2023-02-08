@@ -292,5 +292,32 @@ export const HOW_IT_WORKS_CONSTANTS = {
 		title: 'Ready to get started?',
 		text: 'Fill out your contest brief and begin receiving custom name suggestions within minutes.',
 
-	}
+	},
+	STATISTIC_BLOCK: [
+		{
+			icon: { imageName: 'stars.svg', alt: 'stars' },
+			statisticText: [
+				{ type: 'bold', text: '4.9 out of 5 stars', br: false },
+				{ type: 'normal', text: 'from 25,000+ customers.', br: false },
+			],
+		},
+		{
+			icon: { imageName: 'img2(1).png', alt: 'img2(1)' },
+			statisticText: [
+				{ type: 'normal', text: 'Our branding community stands', br: false },
+				{ type: 'bold', text: '200,000+', br: false },
+				{ type: 'normal', text: 'strong.', br: false },
+
+			],
+		},
+		{
+			icon: { imageName: 'sharing-files.svg', alt: 'sharing-files' },
+			statisticText: [
+				{ type: 'bold', text: '140+ Industries', br: false },
+				{ type: 'normal', text: 'supported across more than', br: false },
+				{ type: 'bold', text: '85 countries', br: true },
+				{ type: 'normal', text: '– and counting.', br: false },
+			],
+		},
+	]
 }

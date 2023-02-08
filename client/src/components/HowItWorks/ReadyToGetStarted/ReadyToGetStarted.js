@@ -15,7 +15,7 @@ export const ReadyToGetStarted = () => {
 
 	return (
 		<Box className={styles.mainContainmer}>
-			<Components.ReadyToGetStartedImage
+			<Components.UI.RenderImage
 				className={styles.imageLeft}
 				image={READY_TO_GET_STARTED.imageLeft} />
 			<Box boxSizing={'border-box'} width={'100%'} m={'0 auto'}
@@ -37,7 +37,7 @@ export const ReadyToGetStarted = () => {
 					navigateTo={navigateTo}
 				/>
 			</Box>
-			<Components.ReadyToGetStartedImage
+			<Components.UI.RenderImage
 				className={styles.imageRight}
 				image={READY_TO_GET_STARTED.imageRight} />
 		</Box>

@@ -4,6 +4,7 @@ export { Logo } from './Logo/Logo';
 export { SlideBar } from './SlideBar/SlideBar';
 export { SceletonAuth } from './SceletonAuth/SceletonAuth';
 export { DemarcationLine } from './DemarcationLine/DemarcationLine';
+export { RenderImage } from './RenderImage/RenderImage';
 
 export { ProgressBar } from './ProgressBar/ProgressBar';
 export { ContestHeader } from './ContestHeader/ContestHeader';

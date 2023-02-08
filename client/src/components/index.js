@@ -130,7 +130,7 @@ export { FaqTopicsBlockNav } from './HowItWorks/FaqTopicsBlockNav/FaqTopicsBlock
 export { FaqTopicsBlockTopicsBox } from './HowItWorks/FaqTopicsBlockTopicsBox/FaqTopicsBlockTopicsBox';
 export { FaqTopicsBlockTopicsCard } from './HowItWorks/FaqTopicsBlockTopicsCard/FaqTopicsBlockTopicsCard';
 export { ReadyToGetStarted } from './HowItWorks/ReadyToGetStarted/ReadyToGetStarted';
-export { ReadyToGetStartedImage } from './HowItWorks/ReadyToGetStartedImage/ReadyToGetStartedImage';
+export { StatisticBlock } from './HowItWorks/StatisticBlock/StatisticBlock';
 
 //UI
 export * as UI from './UI';
