@@ -33,7 +33,7 @@ export const ClientsBox = () => {
 					direction={'row'} flexWrap={'wrap'} >
 					{CLIENTS_BOX.map((item) =>
 						<Box key={item.alt} p={'0 0.9375rem'}>
-							<a href={item.linkTo} >
+							<a href={item.linkTo} target={'blank'}>
 								<Box component={'img'} maxWidth={'6rem'} height={'2.5rem'}
 									src={`${APP_CONSTANTS.STATIC_IMAGES_PATH + item.image}`}
 									alt={item.alt} />
