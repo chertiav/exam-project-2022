@@ -400,4 +400,26 @@ export const HOW_IT_WORKS_CONSTANTS = {
 			textPhone: 'Call us for assistance'
 		},
 	},
+	CLIENTS_BOX: [
+		{
+			image: 'forbes.svg',
+			alt: 'forbes',
+			linkTo: 'https://www.forbes.com/sites/forbestreptalks/2016/07/11/not-sure-how-to-name-a-startup-squadhelp-will-crowdsource-it-for-199'
+		},
+		{
+			image: 'TNW.svg',
+			alt: 'tnw',
+			linkTo: 'https://thenextweb.com/contributors/crowdsource-startup-name-with-squadhelp/'
+		},
+		{
+			image: 'chicago.svg',
+			alt: 'chicago',
+			linkTo: 'http://www.chicagotribune.com/bluesky/originals/ct-squadhelp-startup-names-bsi-20170331-story.html'
+		},
+		{
+			image: 'Mashable.svg',
+			alt: 'mashable',
+			linkTo: 'https://mashable.com/2011/04/01/make-money-crowdworking/'
+		},
+	],
 }

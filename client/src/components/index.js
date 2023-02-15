@@ -139,6 +139,7 @@ export { PricingBoxWhite } from './HowItWorks/PricingBoxWhite/PricingBoxWhite';
 export { PricingBoxIcon } from './HowItWorks/PricingBoxIcon/PricingBoxIcon';
 export { PricingBoxWhiteModal } from './HowItWorks/PricingBoxWhiteModal/PricingBoxWhiteModal';
 export { PricingBoxBlue } from './HowItWorks/PricingBoxBlue/PricingBoxBlue';
+export { ClientsBox } from './HowItWorks/ClientsBox/ClientsBox';
 
 //UI
 export * as UI from './UI';

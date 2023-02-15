@@ -15,6 +15,7 @@ export const HowItWorks = () => {
 			<Components.ReadyToGetStarted />
 			<Components.StatisticBlock />
 			<Components.PricingBox />
+			<Components.ClientsBox />
 
 		</div>
 	)
