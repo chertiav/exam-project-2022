@@ -3,7 +3,6 @@ import { Box, Stack } from '@mui/material';
 import { FaArrowRight } from "react-icons/fa";
 //===============================================
 import * as Components from '../..';
-import { Link } from 'react-router-dom';
 
 export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 
@@ -17,6 +16,14 @@ export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 			: setShowDescription(true);
 	};
 
+	const classesTextListItem = {
+		ul: classes.ul,
+		linkWord: classes.linkWord
+	}
+	const classesTextWidthLink = {
+		linkWord: classes.linkWord
+	}
+
 	const renderItemsDescrioption = (item) => {
 		switch (item.typeDescrioption) {
 			case 1: {
@@ -25,49 +32,27 @@ export const FaqTopicsBlockTopicsCard = ({ topicItems, classes }) => {
 			case 2: {
 				return (
 					<Box p={'1rem'}>
-						{item.descrioptionTitle}
-						<Box component={'ul'} mb={'1rem'} pl={'2.5rem'} className={classes.ul}>
-							{item.descrioptionItems.map((itemText, index) =>
-								<Box component={'li'} key={index}>
-									{itemText.itemTextStart}
-									<Link to={itemText.linkTo} className={classes.linkWord}>
-										{itemText.linkWord}
-									</Link>
-									{itemText.itemTextEnd}
-								</Box>
-							)}
-						</Box>
+						<Components.TextListItem item={item} classes={classesTextListItem} />
 					</Box>
 				);
 			}
 			case 3: {
 				return (
 					<Box p={'1rem'}>
-						{item.itemTextStart}
-						<Link to={item.linkTo} className={classes.linkWord}>
-							{item.linkWord}
-						</Link>
-						{item.itemTextEnd}
+						<Components.TextWidthLink item={item} classes={classesTextWidthLink} />
 					</Box>
 				);
 			}
 			case 4: {
 				return (
 					<Box p={'1rem'} >
-						<p>{item.itemTextStartFirstP}</p>
-						<p>{item.itemTextStartSecondP}</p>
-						<p>{item.itemTextStartThirdP}
-							<Link to={item.linkTo} className={classes.linkWord}>
-								{item.linkWord}
-							</Link>
-							{item.itemTextEnd}
-						</p>
-					</Box>
+						<Components.TextWidthLinkBreak item={item} classes={classesTextWidthLink} />
+					</Box >
 				);
 			}
 			default: break;
 		}
-	}
+	};
 
 	return (
 		topicItems.map((item, index) =>

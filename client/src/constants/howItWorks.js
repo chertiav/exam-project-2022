@@ -186,12 +186,21 @@ export const HOW_IT_WORKS_CONSTANTS = {
 				{
 					itemsTitle: 'What are Managed Contests?',
 					typeDescrioption: 4,
-					itemTextStartFirstP: "The 'Managed' option is a fully managed service by Squadhelp Branding experts. It includes a formal brief preparation by Squadhelp team and management of your contest. Managed Contests are a great fit for companies that are looking for an \"Agency\" like experience and they do not want to manage the contest directly.",
-					itemTextStartSecondP: "Our branding team has directly managed hundreds of branding projects and has learned several best practices that lead to successful project outcomes. Our team will apply all best practices towards the management of your branding project.",
-					itemTextStartThirdP: "Learn more about our ",
-					linkWord: 'Managed Contest Service',
-					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
-					itemTextEnd: '',
+					itemsText: [
+						{
+							itemTextStart: "The 'Managed' option is a fully managed service by Squadhelp Branding experts. It includes a formal brief preparation by Squadhelp team and management of your contest. Managed Contests are a great fit for companies that are looking for an \"Agency\" like experience and they do not want to manage the contest directly."
+						},
+						{
+							itemTextStart: "Our branding team has directly managed hundreds of branding projects and has learned several best practices that lead to successful project outcomes. Our team will apply all best practices towards the management of your branding project."
+						},
+						{
+							itemTextStart: "Learn more about our ",
+							linkWord: 'Managed Contest Service',
+							linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+							itemTextEnd: ''
+						},
+					]
+
 				},
 				{
 					itemsTitle: "What's a typical timeline for a Managed Contest?", typeDescrioption: 2,
@@ -319,5 +328,76 @@ export const HOW_IT_WORKS_CONSTANTS = {
 				{ type: 'normal', text: '– and counting.', br: false },
 			],
 		},
-	]
+	],
+	PRICING_BOX: {
+		infoWhiteBox: [
+			{
+				itemsTitle: 'Pay a Fraction of cost vs hiring an agency',
+				itemTextStart: 'For as low as $199, our naming contests and marketplace allow you to get an amazing brand quickly and affordably.',
+				linkWord: '',
+				linkTo: '',
+				itemTextEnd: ' ',
+			},
+			{
+				itemsTitle: 'Satisfaction Guarantee',
+				itemTextStart: 'Of course! We have policies in place to ensure that you are satisfied with your experience. ',
+				linkWord: 'Learn more',
+				linkTo: '',
+				itemTextEnd: '',
+			},
+		],
+		infoWhiteBoxModal: {
+			title: 'We Stand By Our Process.',
+			text: 'If you are not satisfied receive',
+			step: 3,
+			modaItems: [
+				{
+					icon: 'FaHeart',
+					itemTextStart: 'Complimentary extension of your contest timeline. ',
+					linkWord: '',
+					linkTo: '',
+					itemTextEnd: '',
+				},
+				{
+					icon: 'FaSmile',
+					itemTextStart: 'Complimentary consultation with a Squadhelp branding consultant. ',
+					linkWord: '',
+					linkTo: '',
+					itemTextEnd: '',
+				},
+				{
+					icon: 'FaStudiovinari',
+					itemTextStart: 'Apply your contest award toward the purchase of any premium name from our Marketplace. ',
+					linkWord: '',
+					linkTo: '',
+					itemTextEnd: '',
+				},
+				{
+					icon: 'FaSteamSymbol',
+					itemTextStart: 'Partial refund for Gold and Platinum packages. ',
+					linkWord: 'Read more.',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					itemTextEnd: '',
+				},
+				{
+					icon: 'FaTableTennis',
+					itemTextStart: 'No-questions-asked refund within 10 days for any marketplace domains purchased. ',
+					linkWord: 'Read more.',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					itemTextEnd: '',
+				},
+			]
+		},
+		infoBlueBox: {
+			title: 'Questions?',
+			text: 'Speak with a Squadhelp platform expert to learn more and get your questions answered.',
+			titleButton: 'Schedule Consultation',
+			linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+			phone: {
+				image: 'phone_icon.svg',
+				title: '(877) 355-3585',
+			},
+			textPhone: 'Call us for assistance'
+		},
+	},
 }

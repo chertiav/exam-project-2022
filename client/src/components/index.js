@@ -120,6 +120,9 @@ export { HowDoesWork } from './HowItWorks/HowDoesWork/HowDoesWork';
 export { ButtonDecorate } from './HowItWorks/ButtonDecorate/ButtonDecorate';
 export { TitleBlock } from './HowItWorks/TitleBlock/TitleBlock';
 export { TextBlock } from './HowItWorks/TextBlock/TextBlock';
+export { TextListItem } from './HowItWorks/TextListItem/TextListItem';
+export { TextWidthLink } from './HowItWorks/TextWidthLink/TextWidthLink';
+export { TextWidthLinkBreak } from './HowItWorks/TextWidthLinkBreak/TextWidthLinkBreak';
 export { ButtonCard } from './HowItWorks/ButtonCard/ButtonCard';
 export { OurServices } from './HowItWorks/OurServices/OurServices';
 export { OurServicesCard } from './HowItWorks/OurServicesCard/OurServicesCard';
@@ -131,6 +134,11 @@ export { FaqTopicsBlockTopicsBox } from './HowItWorks/FaqTopicsBlockTopicsBox/Fa
 export { FaqTopicsBlockTopicsCard } from './HowItWorks/FaqTopicsBlockTopicsCard/FaqTopicsBlockTopicsCard';
 export { ReadyToGetStarted } from './HowItWorks/ReadyToGetStarted/ReadyToGetStarted';
 export { StatisticBlock } from './HowItWorks/StatisticBlock/StatisticBlock';
+export { PricingBox } from './HowItWorks/PricingBox/PricingBox';
+export { PricingBoxWhite } from './HowItWorks/PricingBoxWhite/PricingBoxWhite';
+export { PricingBoxIcon } from './HowItWorks/PricingBoxIcon/PricingBoxIcon';
+export { PricingBoxWhiteModal } from './HowItWorks/PricingBoxWhiteModal/PricingBoxWhiteModal';
+export { PricingBoxBlue } from './HowItWorks/PricingBoxBlue/PricingBoxBlue';
 
 //UI
 export * as UI from './UI';

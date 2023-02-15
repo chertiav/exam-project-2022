@@ -1,0 +1,20 @@
+.blockWithoutShadow
+	flex: 0 0 100%
+	padding: 4rem
+	@media (max-width: 576px)
+		padding: 4rem 2rem
+	@media (min-width: 992px)
+		flex: 0 0 41.66667%
+
+	a
+		text-decoration: none
+
+	.btn
+		&:hover
+			transition: all 0.2s ease-in-out
+			transform: translateY(-3px)
+			box-shadow: 0 3px 6px 0 rgba(140,152,164,.25)
+
+	.phoneBlock
+		&:hover
+			color: #d9d9d9
