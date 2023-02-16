@@ -172,22 +172,18 @@ export const FOOTER_CONSTANTS = {
 				{
 					title: 'Short Names',
 					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
-					image: 'power.svg'
 				},
 				{
 					title: 'One Wors',
 					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
-					image: 'power.svg'
 				},
 				{
 					title: '4-letter',
 					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
-					image: 'power.svg'
 				},
 				{
 					title: '5-letter',
 					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
-					image: 'power.svg'
 				},
 			],
 		},
