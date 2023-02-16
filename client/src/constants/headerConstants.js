@@ -74,7 +74,6 @@ export const HEADER_CONSTANTS = {
 		],
 		lastElementMenu: 'Logout',
 	},
-	PAGE_FOR_HEADER_BLUE: ['/how-it-works'],
 	MENU_ITEMS_BLUE_AUTH: {
 		auth: {
 			title: 'Quick Links',

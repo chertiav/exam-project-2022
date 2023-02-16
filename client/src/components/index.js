@@ -15,8 +15,11 @@ export { MenuBoxHeaderBlue } from './Layout/Header/MenuBoxHeaderBlue/MenuBoxHead
 export { NavBarHeaderBlueBottom } from './Layout/Header/NavBarHeaderBlueBottom/NavBarHeaderBlueBottom';
 
 //Footer
+export { Footer } from './Layout/Footer/Footer/Footer';
 export { FooterMain } from './Layout/Footer/FooterMain/FooterMain';
 export { FooterRegistration } from './Layout/Footer/FooterRegistration/FooterRegistration';
+export { FooterMainGrey } from './Layout/Footer/FooterMainGrey/FooterMainGrey';
+export { FooterLinks } from './Layout/Footer/FooterLinks/FooterLinks';
 
 //NotFound
 export { NotFoundBlock } from './NotFound/NotFoundBlock/NotFoundBlock';

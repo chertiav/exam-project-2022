@@ -23,4 +23,5 @@ export const APP_CONSTANTS = {
 	OFFER_STATUS_REJECTED: 'rejected',
 	OFFER_STATUS_WON: 'won',
 	OFFER_STATUS_PENDING: 'pending',
+	PAGE_FOR_HEADER_BLUE: ['/how-it-works'],
 };

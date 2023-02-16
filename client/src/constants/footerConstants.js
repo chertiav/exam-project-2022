@@ -97,4 +97,73 @@ export const FOOTER_CONSTANTS = {
 			},
 		]
 	],
+	LINKS_GREY_FOOTER: {
+		linksGroup: [
+			{
+				titleGroup: 'Services',
+				itemsGroup: [
+					{ title: 'Premium Domains For Sale', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Crowdsource Naming', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Naming Agency', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Brandable Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{
+						title: 'Short Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND,
+						items: [
+							{ title: '3 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+							{ title: '4 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+							{ title: '5 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+						],
+					},
+					{ title: 'One Word Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Industry Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Agency Services', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Logo Contests', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Tagline Contests', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Trademark Filing Service', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Audience Test', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			{
+				titleGroup: 'Tools',
+				itemsGroup: [
+					{ title: 'Business Name Generator', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'How to Name Your Business', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Free Trademark Checker', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Branding Blog', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Business Naming eBook', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Startup Toolkit', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			{
+				titleGroup: 'SquadHelp',
+				itemsGroup: [
+					{ title: 'About', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Contact', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'How It Works', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Testimonials', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Our Work', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Help & FAQs', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			[
+				{
+					titleGroup: 'Creatives',
+					itemsGroup: [
+						{ title: 'Get Started', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Help & FAQs', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Domain Selling Info', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Discussion Forum', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					],
+				},
+				{
+					titleGroup: 'Legal',
+					itemsGroup: [
+						{ title: 'Terms of Service', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Privacy Policy', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Cookie Policy', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					],
+				},
+			]
+		],
+	},
 }
