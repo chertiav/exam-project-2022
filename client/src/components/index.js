@@ -20,6 +20,7 @@ export { FooterMain } from './Layout/Footer/FooterMain/FooterMain';
 export { FooterRegistration } from './Layout/Footer/FooterRegistration/FooterRegistration';
 export { FooterMainGrey } from './Layout/Footer/FooterMainGrey/FooterMainGrey';
 export { FooterLinks } from './Layout/Footer/FooterLinks/FooterLinks';
+export { FooterTrendingSearches } from './Layout/Footer/FooterTrendingSearches/FooterTrendingSearches';
 
 //NotFound
 export { NotFoundBlock } from './NotFound/NotFoundBlock/NotFoundBlock';

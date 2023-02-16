@@ -1,5 +1,4 @@
 import React from 'react';
-import SearchIcon from '@mui/icons-material/Search';
 //=====================================
 import styles from './NavBarHeaderBlueTop.module.sass';
 import * as CONSTANTS from '../../../../constants';
@@ -8,6 +7,13 @@ import * as Components from '../../..';
 
 export const NavBarHeaderBlueTop = ({ logOut, switchMenu }) => {
 
+	const classesSearchBlock = {
+		search: styles.search,
+		input: styles.inputHeder,
+		buttonSearch: styles.buttonSearch,
+		searchIcon: styles.searchIcon,
+	}
+
 	return (
 		<div className={styles.wraper}>
 			<div className={styles.container} >
@@ -15,12 +21,10 @@ export const NavBarHeaderBlueTop = ({ logOut, switchMenu }) => {
 					to={'/'}
 					src={`${CONSTANTS.APP_CONSTANTS.STATIC_IMAGES_PATH}logo_white.svg`}
 					alt="logo_white" />
-				<div className={styles.search} >
-					<input className={styles.inputHeder} type="text" placeholder="Search over 100,000 names" />
-					<button className={styles.buttonSearch}>
-						<SearchIcon className={styles.searchIcon} />
-					</button>
-				</div>
+				<Components.UI.SearchBlock
+					classes={classesSearchBlock}
+					inputText={'Search over 100,000 names'}
+				/>
 				<Components.NavBoxHeaderBlueTop logOut={logOut} switchMenu={switchMenu} />
 			</div>
 		</div>

@@ -165,5 +165,31 @@ export const FOOTER_CONSTANTS = {
 				},
 			]
 		],
+		searchesBlock: {
+			title: 'Trending Searches',
+			text: 'Explore our unique, hand-picked brand & business names for sale along with a matching, premium domain name. Buy instantly for a fixed low price.',
+			searchTerms: [
+				{
+					title: 'Short Names',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					image: 'power.svg'
+				},
+				{
+					title: 'One Wors',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					image: 'power.svg'
+				},
+				{
+					title: '4-letter',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					image: 'power.svg'
+				},
+				{
+					title: '5-letter',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+					image: 'power.svg'
+				},
+			],
+		},
 	},
 }

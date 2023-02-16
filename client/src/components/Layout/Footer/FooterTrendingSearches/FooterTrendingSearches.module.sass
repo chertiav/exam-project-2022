@@ -1,0 +1,46 @@
+.search
+	display: flex
+	margin-top: 3.5rem
+	border-radius: 4px
+	border: 1px solid #e7eaf3
+
+	&:focus-within
+		border: 1px solid #4980ff
+
+	.input
+		flex: 1 1 0%
+		width: 100%
+		padding: 1.25rem 1rem
+		font-size: 1.125rem
+		line-height: 1.75rem
+		border: none
+		background-color: white
+		border-radius: 4px
+		outline: 2px solid transparent
+		outline-offset: 2px
+
+	.buttonSearch
+		width: auto
+		padding: 1.25rem 2rem
+		color: white
+		border: none
+		cursor: pointer
+		background-color: #4980ff
+		border-radius: 4px
+
+	.searchIcon
+		color: white
+		width: 1.75rem
+		height: 1.75rem
+
+.link
+	text-decoration: none
+	color: #4a4a4a
+	&:hover
+		color: #0052ea
+
+.item
+	flex: 1 1 0%
+	@media (max-width: 768px)
+		margin-bottom: 1rem
+		flex: 1 1 50%
