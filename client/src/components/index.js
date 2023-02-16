@@ -21,6 +21,7 @@ export { FooterRegistration } from './Layout/Footer/FooterRegistration/FooterReg
 export { FooterMainGrey } from './Layout/Footer/FooterMainGrey/FooterMainGrey';
 export { FooterLinks } from './Layout/Footer/FooterLinks/FooterLinks';
 export { FooterTrendingSearches } from './Layout/Footer/FooterTrendingSearches/FooterTrendingSearches';
+export { FooterSocial } from './Layout/Footer/FooterSocial/FooterSocial';
 
 //NotFound
 export { NotFoundBlock } from './NotFound/NotFoundBlock/NotFoundBlock';

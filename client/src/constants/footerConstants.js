@@ -191,5 +191,19 @@ export const FOOTER_CONSTANTS = {
 				},
 			],
 		},
+		socialContact: {
+			year: 'Copyright © 2022 Squadhelp Inc',
+			address: {
+				linkTo: 'https://www.shopperapproved.com/reviews/squadhelp.com/',
+				textStart: 'Squadhelp.com has a Shopper Approved rating of ',
+				textEnd: '4.9/5 based on 2782 ratings and reviews',
+			},
+			social: [
+				{ icons: 'icons8-linkedin-2.svg', linkTo: 'https://www.linkedin.com/company/squadhelp/' },
+				{ icons: 'icons8-instagram.svg', linkTo: 'https://www.instagram.com/squadhelpinc/' },
+				{ icons: 'icons8-twitter.svg', linkTo: 'https://twitter.com/squadhelp' },
+				{ icons: 'icons8-facebook.svg', linkTo: 'https://www.facebook.com/squadhelpinc' },
+			]
+		}
 	},
 }

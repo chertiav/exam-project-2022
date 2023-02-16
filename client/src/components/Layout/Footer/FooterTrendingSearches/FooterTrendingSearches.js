@@ -60,7 +60,7 @@ export const FooterTrendingSearches = () => {
 									width={'1rem'}
 									height={'1.25rem'} color={'#cccccc'}
 								/>
-								<Box component={'span'} ml={'0.875rem'} fontWeight={500}>{item.title}</Box>
+								<Box component={'span'} ml={'0.875rem'} fontWeight={600}>{item.title}</Box>
 							</Link>
 						</Stack>
 					)}
