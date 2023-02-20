@@ -85,6 +85,11 @@ const validationSchems = {
 		catalogName: yup.string().test('test-catalogName', 'required', (value) =>
 			value && value.trim().length >= 1).required('required'),
 	}),
+	EventsSchema: yup.object().shape({
+		nameEvent: yup.string().required('Field is required'),
+		date: yup.date().required('Field is required'),
+		time: yup.string().required('Field is required'),
+	})
 };
 
 

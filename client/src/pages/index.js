@@ -9,4 +9,5 @@ export { StartContest } from './StartContest/StartContest';
 export { ContestCreation } from './ContestCreation/ContestCreation';
 export { Payment } from './Payment/Payment';
 export { Contest } from './Contest/Contest';
+export { Events } from './Events/Events';
 
