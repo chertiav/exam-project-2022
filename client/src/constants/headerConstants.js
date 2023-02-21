@@ -68,6 +68,7 @@ export const HEADER_CONSTANTS = {
 			{ title: 'View Dashboard', linkPage: '/dashboard' },
 			{ title: 'My Account', linkPage: '/account' },
 			{ title: 'Events', linkPage: '/events' },
+			{ title: 'Button Group', linkPage: '/button-group' },
 			{ title: 'Messages', linkPage: '/not-found' },
 			{ title: 'Affiliate Dashboard', linkPage: '/not-found' },
 		],
