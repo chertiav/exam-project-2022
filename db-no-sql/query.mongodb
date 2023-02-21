@@ -1,0 +1,6 @@
+use('squadhelp-chat');
+db.messages.aggregate([
+	{ $match : { body :/паровоз/i } },
+	{ $group: { _id: null, count: { $sum: 1 } } }
+	]
+)
