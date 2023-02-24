@@ -58,7 +58,9 @@ module.exports.getAllOffersByContestId = async (req, res, next) => {
 			pagination: { limit, offset },
 		} = req;
 		const offers = await Offer.findAll({
-			where: role === CONSTANTS.CREATOR ? { userId, contestId } : { contestId },
+			where: role === CONSTANTS.CREATOR
+				? { userId, contestId }
+				: { contestId, status: CONSTANTS.OFFER_STATUS_ACTIVE },
 			attributes: { exclude: ['userId', 'contestId'] },
 			order: [['status', 'desc'], ['id', 'asc']],
 			limit, offset,

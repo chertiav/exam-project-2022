@@ -14,6 +14,7 @@ export const APP_CONSTANTS = {
 		: `http://${serverIP}:${serverPort}/public/images/`,
 	CUSTOMER: 'customer',
 	CREATOR: 'creator',
+	MODERATOR: 'moderator',
 	NAME_CONTEST: 'name',
 	LOGO_CONTEST: 'logo',
 	TAGLINE_CONTEST: 'tagline',

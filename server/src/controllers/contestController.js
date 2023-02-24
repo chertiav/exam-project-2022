@@ -37,7 +37,11 @@ module.exports.getCustomersContests = async (req, res, next) => {
 		const allCustomerContests = await Contest.findAll({
 			where: { status, userId }, limit, offset,
 			order: [['id', 'DESC']],
-			include: [{ model: Offer, required: false, attributes: ['id'] }],
+			include: [{
+				model: Offer,
+				where: { status: CONSTANTS.OFFER_STATUS_ACTIVE },
+				required: false, attributes: ['id'],
+			}],
 		});
 		const { contests, haveMore } = createCountHaveMore(allCustomerContests);
 		res.status(200).send({ contests, haveMore });
@@ -53,6 +57,7 @@ module.exports.getContests = async (req, res, next) => {
 			pagination: { limit, offset },
 			tokenData: { userId },
 		} = req;
+		console.log(userId);
 		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort);
 		const allContests = await Contest.findAll({
 			where: predicates.where,
@@ -101,7 +106,7 @@ module.exports.getCountOffersByContest = async (req, res, next) => {
 		const AllCountOffers = await Offer.count({
 			where: role === CONSTANTS.CREATOR
 				? { userId, contestId }
-				: { contestId },
+				: { contestId, status: CONSTANTS.OFFER_STATUS_ACTIVE },
 		});
 		res.status(200).send({ AllCountOffers });
 	} catch (err) {
