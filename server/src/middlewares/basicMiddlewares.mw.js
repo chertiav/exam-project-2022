@@ -1,6 +1,7 @@
 const { Contest, Sequelize } = require('../db/models');
 const CONSTANTS = require('../constants');
 const ApplicationError = require('../errors/ApplicationError');
+const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.onlyForCustomer = (req, res, next) => {
 	const { tokenData: { role } } = req;
@@ -28,6 +29,7 @@ module.exports.parseBody = (req, res, next) => {
 		});
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -53,6 +55,7 @@ module.exports.canGetContest = async (req, res, next) => {
 		}
 		result ? next() : next(ApplicationError.RightsError());
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -72,6 +75,7 @@ module.exports.canSendOffer = async (req, res, next) => {
 			? next()
 			: next(ApplicationError.RightsError());
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -90,6 +94,7 @@ module.exports.onlyForCustomerWhoCreateContest = async (req, res, next) => {
 		}
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -108,6 +113,7 @@ module.exports.canUpdateContest = async (req, res, next) => {
 		}
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };

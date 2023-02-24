@@ -3,6 +3,7 @@ const ApplicationError = require('../errors/ApplicationError');
 const CONSTANTS = require('../constants');
 const { createCountHaveMore, createWhereAllContests, parseBool, deleteFile } = require('../utils/functions');
 const { contestService } = require('./service');
+const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.dataForContest = async (req, res, next) => {
 	const response = {};
@@ -23,6 +24,7 @@ module.exports.dataForContest = async (req, res, next) => {
 		});
 		res.status(200).send(response);
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError('cannot get contest preferences', err));
 	}
 };
@@ -42,6 +44,7 @@ module.exports.getCustomersContests = async (req, res, next) => {
 		const { contests, haveMore } = createCountHaveMore(allCustomerContests);
 		res.status(200).send({ contests, haveMore });
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -70,6 +73,7 @@ module.exports.getContests = async (req, res, next) => {
 		const { contests, haveMore } = createCountHaveMore(allContests);
 		res.status(200).send({ contests, haveMore });
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -90,6 +94,7 @@ module.exports.getContestById = async (req, res, next) => {
 		});
 		res.status(200).send(contestData);
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -105,6 +110,7 @@ module.exports.getCountOffersByContest = async (req, res, next) => {
 		});
 		res.status(200).send({ AllCountOffers });
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -130,6 +136,7 @@ module.exports.updateContest = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };

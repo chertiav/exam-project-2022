@@ -4,6 +4,7 @@ require('dotenv').config();
 const ApplicationError = require('../errors/ApplicationError');
 const UserDto = require('../dtos/UserDto');
 const { userService } = require('../controllers/service');
+const { loggingError } = require('../utils/errorLogFunction');
 
 
 module.exports.checkAuth = async (req, res, next) => {
@@ -17,6 +18,7 @@ module.exports.checkAuth = async (req, res, next) => {
 		const { ...userData } = new UserDto.UserAppDto(foundUser);
 		res.status(200).send(userData);
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.TokenError('User is not authorized', err));
 	}
 };
@@ -29,6 +31,7 @@ module.exports.checkToken = async (req, res, next) => {
 		req.tokenData = jwt.verify(accessToken, process.env.JWT_SECRET);
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.TokenError('User is not authorized', err));
 	}
 };

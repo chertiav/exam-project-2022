@@ -4,7 +4,6 @@ const path = require('path');
 const { static_path } = require('../config/config');
 const { Sequelize } = require('../db/models');
 const CONSTANTS = require('../constants');
-const { log } = require('console');
 
 function getPredicateTypes(index) {
 	return { [Sequelize.Op.or]: [CONSTANTS.CONTEST_TYPE[index].split(',')] };

@@ -5,6 +5,7 @@ const { models: { Conversations, Messages, Catalogs } } = require('../db/models/
 const { userService } = require('./service');
 const { UserChatDto, UserInterlocutorChatDto } = require('../dtos/UserDto');
 const ApplicationError = require('../errors/ApplicationError');
+const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.addMessage = async (req, res, next) => {
 	try {
@@ -58,6 +59,7 @@ module.exports.addMessage = async (req, res, next) => {
 			preview: Object.assign(preview, { interlocutor: body.interlocutor }),
 		});
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -99,6 +101,7 @@ module.exports.getChat = async (req, res, next) => {
 			interlocutor: { ...new UserChatDto(interlocutor) },
 		});
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -153,6 +156,7 @@ module.exports.getPreview = async (req, res, next) => {
 		});
 		res.status(200).send(conversations);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -170,6 +174,7 @@ module.exports.blackList = async (req, res, next) => {
 		controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
 		res.status(200).send(chat);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -185,6 +190,7 @@ module.exports.favoriteChat = async (req, res, next) => {
 		}
 		res.status(200).send(chat);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -199,6 +205,7 @@ module.exports.createCatalog = async (req, res, next) => {
 		}
 		res.status(200).send(catalog);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -213,6 +220,7 @@ module.exports.updateNameCatalog = async (req, res, next) => {
 		}
 		res.status(200).send(catalog);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -227,6 +235,7 @@ module.exports.addNewChatToCatalog = async (req, res, next) => {
 		}
 		res.send(catalog);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -241,6 +250,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 		}
 		res.status(200).send(catalog);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -254,6 +264,7 @@ module.exports.deleteCatalog = async (req, res, next) => {
 		}
 		res.sendStatus(res.statusCode);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };
@@ -270,6 +281,7 @@ module.exports.getCatalogs = async (req, res, next) => {
 		}
 		res.status(200).send(catalogs);
 	} catch (err) {
+		loggingError(err);
 		next(err);
 	}
 };

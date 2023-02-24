@@ -1,5 +1,6 @@
 const { User } = require('../../db/models');
 const ApplicationError = require('../../errors/ApplicationError');
+const { loggingError } = require('../../utils/errorLogFunction');
 
 module.exports.userCreation = async (data, t) => {
 	try {
@@ -8,6 +9,7 @@ module.exports.userCreation = async (data, t) => {
 			return newUser.dataValues;
 		}
 	} catch (err) {
+		loggingError(err);
 		throw ApplicationError.ServerError('Server error while creating user, please change your email', err);
 	}
 };
@@ -20,6 +22,7 @@ module.exports.updateUser = async (data, predicate, t) => {
 			return updatedUser.dataValues;
 		}
 	} catch (err) {
+		loggingError(err);
 		if (err.message.includes('Users_balance_ck')) {
 			throw ApplicationError.NotEnoughMoney('Not enough money', err);
 		} else {
