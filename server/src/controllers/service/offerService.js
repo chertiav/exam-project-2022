@@ -55,9 +55,9 @@ module.exports.resolveOffer = async (
 			CASE
 				WHEN "id"=${contestId} AND "orderId"='${orderId}'
 					THEN '${CONSTANTS.CONTEST_STATUS_FINISHED}'
-				WHEN	"orderId"='${orderId}'	AND "priority"=${priority + 1}
+				WHEN	"orderId"='${orderId}' AND "status"='${CONSTANTS.CONTEST_STATUS_PENDING}' AND "priority"=${priority + 1}
 					THEN '${CONSTANTS.CONTEST_STATUS_ACTIVE}'
-				ELSE '${CONSTANTS.CONTEST_STATUS_PENDING}'
+				ELSE "status"
 			END
     `),
 	}, { orderId }, t);

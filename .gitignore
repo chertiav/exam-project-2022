@@ -1,13 +1,13 @@
 .idea/
 .vscode/
 temp/
+public/
 
 ./client/node_modules
 ./server/node_modules
 ./server/uploadFiles
 ./server/upload
 ./server/public
-./public/
 
 ./server/public/images
 .server/public/images
