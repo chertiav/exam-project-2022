@@ -10,6 +10,10 @@ export const getContestsCreativeAction = (payload) => ({
 	type: ACTIONS_TYPES.GET_CONTESTS_CREATIVE_ACTION,
 	payload,
 });
+export const getContestsModeratorAction = (payload) => ({
+	type: ACTIONS_TYPES.GET_CONTESTS_MODERATOR_ACTION,
+	payload,
+});
 export const getContestRequest = () => ({
 	type: ACTIONS_TYPES.GET_CONTESTS_REQUEST,
 });

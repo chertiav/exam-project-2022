@@ -181,10 +181,11 @@ export const Contest = () => {
 								)
 							}
 						</div>
-						<Components.ContestSideBar
-							contestData={contestData}
-							totalEntries={AllCountOffers}
-						/>
+						{data.role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+							<Components.ContestSideBar
+								contestData={contestData}
+								totalEntries={AllCountOffers}
+							/>}
 					</div>
 					)
 				)}

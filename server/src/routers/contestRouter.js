@@ -27,6 +27,14 @@ contestRouter.get(
 );
 
 contestRouter.get(
+	'/getAllContestsForModerator',
+	checkToken.checkToken,
+	basicMiddlewares.onlyForModerator,
+	pagination.pagination,
+	contestController.getContests,
+);
+
+contestRouter.get(
 	'/getContestById/:contestId',
 	checkToken.checkToken,
 	basicMiddlewares.canGetContest,

@@ -41,7 +41,7 @@ export const NavContainer = ({ data }) => {
 					<ul>{menuRender()}</ul>
 				</div>
 				{data
-					&& data.role !== CONSTANTS.APP_CONSTANTS.CREATOR
+					&& data.role === CONSTANTS.APP_CONSTANTS.CUSTOMER
 					&& <Components.UI.StartButton title={'START CONTEST'} navigateTo={startContests} />
 				}
 			</div>

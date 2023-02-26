@@ -20,7 +20,17 @@ export function* getActiveContestsSaga({ payload }) {
 	} catch (error) {
 		yield put(contestActions.getContestError(error.response));
 	}
-}
+};
+export function* getModeratorContestSaga({ payload }) {
+	yield put(contestActions.getContestRequest());
+	try {
+		const { data } = yield restController.getModeratorContests(payload);
+		const contests = data.contests.filter(contest => contest.count !== 0);
+		yield put(contestActions.getContestSuccess({ ...data, contests }));
+	} catch (error) {
+		yield put(contestActions.getContestError(error.response));
+	}
+};
 export function* getDataForContestSaga({ payload }) {
 	yield put(contestActions.getDataForContestRequest());
 	try {
@@ -29,7 +39,7 @@ export function* getDataForContestSaga({ payload }) {
 	} catch (error) {
 		yield put(contestActions.getDataForContestError(error.response));
 	}
-}
+};
 export function* getContestByIdSaga({ payload }) {
 	yield put(contestActions.getContestByIdRequest());
 	try {
@@ -38,7 +48,7 @@ export function* getContestByIdSaga({ payload }) {
 	} catch (error) {
 		yield put(contestActions.getContestByIdError(error.response));
 	}
-}
+};
 export function* getCountOffersByContestSaga({ payload }) {
 	yield put(contestActions.getCountOffersByContestdRequest());
 	try {
@@ -47,7 +57,7 @@ export function* getCountOffersByContestSaga({ payload }) {
 	} catch (error) {
 		yield put(contestActions.getCountOffersByContestdError(error.response));
 	}
-}
+};
 export function* updateContestSaga({ payload }) {
 	yield put(contestActions.updateContestRequest());
 	try {
@@ -56,6 +66,6 @@ export function* updateContestSaga({ payload }) {
 	} catch (error) {
 		yield put(contestActions.updateContestError(error.response));
 	}
-}
+};
 
 

@@ -20,6 +20,7 @@ function* rootSaga() {
 	//contest
 	yield takeLatest(ACTIONS_TYPES.GET_CONTESTS_CUSTOMER_ACTION, contestSagas.getCustomerContestSaga);
 	yield takeLatest(ACTIONS_TYPES.GET_CONTESTS_CREATIVE_ACTION, contestSagas.getActiveContestsSaga);
+	yield takeLatest(ACTIONS_TYPES.GET_CONTESTS_MODERATOR_ACTION, contestSagas.getModeratorContestSaga);
 	yield takeLatest(ACTIONS_TYPES.GET_COUNT_OFFERS_BY_CONTEST_ACTION, contestSagas.getCountOffersByContestSaga);
 	yield takeLatest(ACTIONS_TYPES.GET_DATA_FOR_CONTEST_ACTION, contestSagas.getDataForContestSaga);
 	yield takeLatest(ACTIONS_TYPES.GET_CONTEST_BY_ID_ACTION, contestSagas.getContestByIdSaga);

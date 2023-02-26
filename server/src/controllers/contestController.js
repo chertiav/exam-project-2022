@@ -55,19 +55,32 @@ module.exports.getContests = async (req, res, next) => {
 		const {
 			query: { typeIndex, contestId, industry, awardSort, ownEntries },
 			pagination: { limit, offset },
-			tokenData: { userId },
+			tokenData: { userId, role },
 		} = req;
-		console.log(userId);
-		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort);
+		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort, role);
+		const predicatesWere = role === CONSTANTS.MODERATOR
+			? {
+				id: {
+					[Sequelize.Op.in]: [sequelize.literal(`
+				SELECT "Contests".id FROM "Contests"
+				JOIN "Offers" ON "Contests".id = "Offers"."contestId"
+				GROUP BY "Contests".id`)],
+				},
+				...predicates.where,
+			}
+			: predicates.where;
 		const allContests = await Contest.findAll({
-			where: predicates.where,
+			where: predicatesWere,
 			order: predicates.order,
 			limit, offset,
 			include: [
 				{
 					model: Offer,
-					required: parseBool(ownEntries),
-					where: parseBool(ownEntries) ? { userId } : {},
+					required: role === CONSTANTS.CREATOR && parseBool(ownEntries),
+					where:
+						role === CONSTANTS.CREATOR
+							? parseBool(ownEntries) ? { userId } : {}
+							: {},
 					attributes: ['id'],
 				},
 			],

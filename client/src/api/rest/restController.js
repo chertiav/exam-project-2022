@@ -18,6 +18,10 @@ export const getActiveContests = ({
 	http.get(`/contests/getAllContests?offset=${offset}&limit=${limit}
 	&typeIndex=${typeIndex}&contestId=${contestId}&industry=${industry}
 	&awardSort=${awardSort}&ownEntries=${ownEntries}`);
+export const getModeratorContests = ({
+	offset, limit, typeIndex, contestId, industry, awardSort, ownEntries }) =>
+	http.get(`/contests/getAllContestsForModerator?offset=${offset}&limit=${limit}
+	&typeIndex=${typeIndex}&contestId=${contestId}&industry=${industry}`);
 export const getContestById = (id) => http.get(`/contests/getContestById/${id}`);
 export const getCountOffersByContest = (id) => http.get(`/contests/getCountOffers/${id}`);
 export const updateContest = (data) => http.patch('/contests/updateContest', data);

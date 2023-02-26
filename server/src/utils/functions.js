@@ -4,7 +4,6 @@ const path = require('path');
 const { static_path } = require('../config/config');
 const { Sequelize } = require('../db/models');
 const CONSTANTS = require('../constants');
-const { log } = require('console');
 
 function getPredicateTypes(index) {
 	return { [Sequelize.Op.or]: [CONSTANTS.CONTEST_TYPE[index].split(',')] };
@@ -21,11 +20,14 @@ module.exports.parseBool = (params) => {
 	);
 };
 module.exports.createWhereAllContests = (
-	typeIndex, contestId, industry, awardSort) => {
+	typeIndex, contestId, industry, awardSort, role) => {
 	const object = {
 		where: {},
 		order: [],
 	};
+	const statusWhere = role === CONSTANTS.MODERATOR
+		? [CONSTANTS.CONTEST_STATUS_ACTIVE]
+		: [CONSTANTS.CONTEST_STATUS_FINISHED, CONSTANTS.CONTEST_STATUS_ACTIVE];
 	if (this.parseBool(typeIndex)) {
 		Object.assign(object.where, {
 			contestType: getPredicateTypes(typeIndex),
@@ -41,12 +43,7 @@ module.exports.createWhereAllContests = (
 		object.order.push(['prize', awardSort]);
 	}
 	Object.assign(object.where, {
-		status: {
-			[Sequelize.Op.or]: [
-				CONSTANTS.CONTEST_STATUS_FINISHED,
-				CONSTANTS.CONTEST_STATUS_ACTIVE,
-			],
-		},
+		status: { [Sequelize.Op.or]: statusWhere },
 	});
 	object.order.push(['id', 'desc']);
 	return object;

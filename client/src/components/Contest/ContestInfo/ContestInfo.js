@@ -34,7 +34,8 @@ export const ContestInfo = ({
 							className={styles.editBtn}
 						>	Edit
 						</div>}
-					{role !== CONSTANTS.APP_CONSTANTS.CUSTOMER && <i onClick={goChat} className="fas fa-comments" />}
+					{role === CONSTANTS.APP_CONSTANTS.CREATOR &&
+						< i onClick={goChat} className="fas fa-comments" />}
 				</div>
 				<Components.ContestData
 					title={'Title of the Project'}

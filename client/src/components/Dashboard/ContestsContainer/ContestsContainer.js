@@ -29,7 +29,7 @@ export const ContestsContainer = ({ children, loadMore, haveMore, isFetching, ty
 			</div>
 		)
 	} return (
-		<div>
+		<div className={styles.container}>
 			{children}
 			{
 				(isFetching) &&

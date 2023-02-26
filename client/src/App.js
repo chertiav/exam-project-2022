@@ -37,9 +37,9 @@ const App = () => {
 					<Route element={<CustomRoute.ProtectedRoute />}>
 						<Route path='/account' element={<Pages.UserProfile />} />
 						<Route path='/dashboard' element={<Pages.Dashboard />} />
+						<Route path='/contest/:id' element={<Pages.Contest />} />
 						{data?.role !== 'moderator' &&
 							<>
-								<Route path='/contest/:id' element={<Pages.Contest />} />
 								<Route path="/payment" element={<Pages.Payment />} />
 								<Route path='/startContest' >
 									<Route index element={<Pages.StartContest />} />
@@ -65,7 +65,7 @@ const App = () => {
 					<Route path="*" element={<Navigate to="/" replace={true} />} />
 				</Route>
 			</Routes>
-			{auth
+			{auth && data?.role !== 'moderator'
 				? <Components.ChatContainer />
 				: data?.id
 					? controller.unsubscribe(data.id)
