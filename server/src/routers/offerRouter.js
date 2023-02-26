@@ -20,11 +20,25 @@ offerRouter.patch(
 	offerController.setOfferStatus,
 );
 
+offerRouter.patch(
+	'/setOfferStatusModerator',
+	checkToken.checkToken,
+	basicMiddlewares.onlyForModerator,
+	offerController.setOfferStatus,
+);
+
 offerRouter.get(
 	'/getAllOffers',
 	checkToken.checkToken,
 	pagination.pagination,
 	offerController.getAllOffersByContestId,
+);
+
+offerRouter.delete(
+	'/:id',
+	checkToken.checkToken,
+	basicMiddlewares.onlyForModerator,
+	offerController.deleteOffer,
 );
 
 offerRouter.patch(

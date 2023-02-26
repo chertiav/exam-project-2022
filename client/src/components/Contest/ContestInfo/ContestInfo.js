@@ -28,7 +28,9 @@ export const ContestInfo = ({
 						data={focusOfWork}
 						classes={specialInfoClasses}
 					/>
-					{(User.id === userId && status !== CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_FINISHED) &&
+					{(role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+						User.id === userId &&
+						status !== CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_FINISHED) &&
 						<div
 							onClick={() => changeEditContest(true)}
 							className={styles.editBtn}

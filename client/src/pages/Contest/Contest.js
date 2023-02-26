@@ -59,18 +59,17 @@ export const Contest = () => {
 		}
 	}, [getDataByContest, clearContestById])
 
-	const setOfferStatus = (creatorId, offerId, command) => {
+	const setOfferStatus = ({ creatorId, offerId, command }) => {
 		offerStoreCleareError();
 		const { id, orderId, priority } = contestData;
-		const obj = {
-			command,
-			offerId,
-			creatorId,
-			orderId,
-			priority,
-			contestId: id,
-		};
-		dispatch(offerActions.setOfferStatusAction(obj));
+		const obj = data.role === CONSTANTS.APP_CONSTANTS.MODERATOR
+			? command === 'delete' ? { offerId } : { command, offerId }
+			: { command, offerId, creatorId, orderId, priority, contestId: id };
+		data.role === CONSTANTS.APP_CONSTANTS.MODERATOR
+			? command === 'delete'
+				? dispatch(offerActions.deleteOffersActions(obj))
+				: dispatch(offerActions.setOfferStatusModeratorAction(obj))
+			: dispatch(offerActions.setOfferStatusAction(obj));
 	};
 
 	const findConversationInfo = (interlocutorId) => {
@@ -99,16 +98,36 @@ export const Contest = () => {
 		}));
 	};
 
-	const needButtons = (offerStatus) => {
+	const needButtonsModerator = (offerStatus) => {
+		const contestStatus = contestData.status;
+		return (
+			contestStatus === CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_ACTIVE
+			&& offerStatus === CONSTANTS.APP_CONSTANTS.OFFER_STATUS_PENDING
+		);
+	}
+
+	const needButtonsCustomer = (offerStatus) => {
 		const contestCreatorId = contestData.User.id;
 		const userId = data.id;
 		const contestStatus = contestData.status;
 		return (
 			contestCreatorId === userId
 			&& contestStatus === CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_ACTIVE
-			&& offerStatus === CONSTANTS.APP_CONSTANTS.OFFER_STATUS_PENDING
+			&& offerStatus === CONSTANTS.APP_CONSTANTS.OFFER_STATUS_ACTIVE
 		);
-	};
+	}
+
+	const needButtons = (offerStatus) => {
+		switch (data.role) {
+			case CONSTANTS.APP_CONSTANTS.CUSTOMER: {
+				return needButtonsCustomer(offerStatus);
+			}
+			case CONSTANTS.APP_CONSTANTS.MODERATOR: {
+				return needButtonsModerator(offerStatus);
+			}
+			default: break;
+		}
+	}
 
 	return (
 		<>

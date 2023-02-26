@@ -58,29 +58,15 @@ module.exports.getContests = async (req, res, next) => {
 			tokenData: { userId, role },
 		} = req;
 		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort, role);
-		const predicatesWere = role === CONSTANTS.MODERATOR
-			? {
-				id: {
-					[Sequelize.Op.in]: [sequelize.literal(`
-				SELECT "Contests".id FROM "Contests"
-				JOIN "Offers" ON "Contests".id = "Offers"."contestId"
-				GROUP BY "Contests".id`)],
-				},
-				...predicates.where,
-			}
-			: predicates.where;
 		const allContests = await Contest.findAll({
-			where: predicatesWere,
+			where: predicates.where,
 			order: predicates.order,
 			limit, offset,
 			include: [
 				{
 					model: Offer,
-					required: role === CONSTANTS.CREATOR && parseBool(ownEntries),
-					where:
-						role === CONSTANTS.CREATOR
-							? parseBool(ownEntries) ? { userId } : {}
-							: {},
+					required: parseBool(ownEntries),
+					where: parseBool(ownEntries) ? { userId } : {},
 					attributes: ['id'],
 				},
 			],
@@ -94,18 +80,26 @@ module.exports.getContests = async (req, res, next) => {
 
 module.exports.getContestById = async (req, res, next) => {
 	try {
-		const { params: { contestId } } = req;
-		const contestData = await Contest.findByPk(contestId, {
-			raw: true,
-			nest: true,
-			include: [{
-				model: User,
-				required: true,
+		const { params: { contestId }, tokenData: { role } } = req;
+		const predicates = role === CONSTANTS.MODERATOR
+			? {
+				raw: true,
 				attributes: {
-					exclude: ['password', 'role', 'balance', 'accessToken'],
+					exclude: ['orderId', 'userId', 'prize', 'priority'],
 				},
-			}],
-		});
+			}
+			: {
+				raw: true,
+				nest: true,
+				include: [{
+					model: User,
+					required: true,
+					attributes: {
+						exclude: ['password', 'role', 'balance', 'accessToken'],
+					},
+				}],
+			};
+		const contestData = await Contest.findByPk(contestId, predicates);
 		res.status(200).send(contestData);
 	} catch (err) {
 		next(ApplicationError.ServerError(null, err));
@@ -148,6 +142,45 @@ module.exports.updateContest = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		next(ApplicationError.ServerError(null, err));
+	}
+};
+
+module.exports.getContestsForModerator = async (req, res, next) => {
+	try {
+		const {
+			query: { typeIndex, contestId, industry, awardSort },
+			pagination: { limit, offset },
+			tokenData: { role },
+		} = req;
+		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort, role);
+		const allContests = await Contest.findAll({
+			where: {
+				id: {
+					[Sequelize.Op.in]: [sequelize.literal(`
+				SELECT "Contests".id FROM "Contests"
+				JOIN "Offers" ON "Contests".id = "Offers"."contestId"
+				WHERE "Offers".status = '${CONSTANTS.OFFER_STATUS_PENDING}'
+				GROUP BY "Contests".id`)],
+				},
+				...predicates.where,
+			},
+			order: predicates.order,
+			limit, offset,
+			attributes: {
+				exclude: ['orderId', 'userId', 'prize', 'priority'],
+			},
+			include: [
+				{
+					model: Offer,
+					where: { status: CONSTANTS.OFFER_STATUS_PENDING },
+					attributes: ['id'],
+				},
+			],
+		});
+		const { contests, haveMore } = createCountHaveMore(allContests);
+		res.status(200).send({ contests, haveMore });
+	} catch (err) {
 		next(ApplicationError.ServerError(null, err));
 	}
 };

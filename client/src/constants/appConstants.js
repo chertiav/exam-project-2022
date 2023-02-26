@@ -24,4 +24,5 @@ export const APP_CONSTANTS = {
 	OFFER_STATUS_REJECTED: 'rejected',
 	OFFER_STATUS_WON: 'won',
 	OFFER_STATUS_PENDING: 'pending',
+	OFFER_STATUS_ACTIVE: 'active',
 };

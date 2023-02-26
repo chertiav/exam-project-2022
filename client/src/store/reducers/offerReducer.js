@@ -52,6 +52,13 @@ const offerReducer = (state = initialState, { type, payload }) => {
 				errorOffersStore: null,
 				isFetching: false,
 			};
+		case ACTION_TYPES.SET_OFFER_STATUS_MODERATOR_SUCCESS:
+			return {
+				...state,
+				offers: [...state.offers.filter(offer => offer.id !== payload.id)],
+				errorOffersStore: null,
+				isFetching: false,
+			};
 		case ACTION_TYPES.SET_OFFER_STATUS_ERROR:
 			return {
 				...state,
@@ -72,6 +79,25 @@ const offerReducer = (state = initialState, { type, payload }) => {
 				isFetching: false,
 			};
 		case ACTION_TYPES.ADD_NEW_OFFER_ERROR:
+			return {
+				...state,
+				isFetching: false,
+				errorOffersStore: payload,
+			};
+		//deleteOffer
+		case ACTION_TYPES.DELETE_OFFER_REQUEST:
+			return {
+				...state,
+				isFetching: true,
+			};
+		case ACTION_TYPES.DELETE_OFFER_SUCCESS:
+			return {
+				...state,
+				offers: [...state.offers.filter(offer => offer.id !== payload.offerId)],
+				errorOffersStore: null,
+				isFetching: false,
+			};
+		case ACTION_TYPES.DELETE_OFFER_ERROR:
 			return {
 				...state,
 				isFetching: false,

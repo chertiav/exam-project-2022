@@ -31,7 +31,7 @@ contestRouter.get(
 	checkToken.checkToken,
 	basicMiddlewares.onlyForModerator,
 	pagination.pagination,
-	contestController.getContests,
+	contestController.getContestsForModerator,
 );
 
 contestRouter.get(

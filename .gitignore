@@ -7,6 +7,7 @@ temp/
 ./server/uploadFiles
 ./server/upload
 ./server/public
+./public/
 
 ./server/public/images
 .server/public/images

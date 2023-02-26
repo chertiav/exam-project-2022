@@ -34,7 +34,9 @@ function* rootSaga() {
 	yield takeLatest(ACTIONS_TYPES.GET_ALL_OFFER_BY_CONTEST_ID_ACTION, offerSaga.getAllOffersByContestIdSaga);
 	yield takeLatest(ACTIONS_TYPES.ADD_NEW_OFFER_ACTION, offerSaga.addOfferSaga);
 	yield takeLatest(ACTIONS_TYPES.SET_OFFER_STATUS_ACTION, offerSaga.setOfferStatusSaga);
+	yield takeLatest(ACTIONS_TYPES.SET_OFFER_STATUS_MODERATOR_ACTION, offerSaga.setOfferStatusModeratorSaga);
 	yield takeLatest(ACTIONS_TYPES.CHANGE_MARK_ACTION, offerSaga.changeMarkSaga);
+	yield takeLatest(ACTIONS_TYPES.DELETE_OFFER_ACTION, offerSaga.deleteOfferSaga);
 
 	//CHAT
 	yield takeLatest(ACTIONS_TYPES.GET_PREVIEW_CHAT_ACTION, chatSagas.previewSaga);

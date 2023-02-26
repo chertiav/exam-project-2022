@@ -34,6 +34,12 @@ const updateOfferStatus = async (data, predicate, t) => {
 	}
 };
 
+module.exports.activeOffer = async (offerId, t) => {
+	const activatedOffer = await updateOffer(
+		{ status: CONSTANTS.OFFER_STATUS_ACTIVE }, { id: offerId }, t);
+	return activatedOffer;
+};
+
 module.exports.rejectOffer = async (offerId, creatorId, contestId, t) => {
 	const rejectedOffer = await updateOffer(
 		{ status: CONSTANTS.OFFER_STATUS_REJECTED }, { id: offerId }, t);

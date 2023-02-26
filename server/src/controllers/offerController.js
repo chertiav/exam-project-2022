@@ -30,6 +30,24 @@ module.exports.addNewOffer = async (req, res, next) => {
 	}
 };
 
+module.exports.deleteOffer = async (req, res, next) => {
+	const t = await sequelize.transaction();
+	try {
+		const id = req.params.id;
+		const deletedOffer = await Offer.destroy({
+			where: { id },
+			transaction: t,
+		});
+		if (deletedOffer) {
+			res.status(200).send('Ok');
+		}
+		t.commit();
+	} catch (err) {
+		t.rollback();
+		next(ApplicationError.ServerError('offer hasn"t been delete', err));
+	}
+};
+
 module.exports.setOfferStatus = async (req, res, next) => {
 	const t = await sequelize.transaction();
 	try {
@@ -41,6 +59,9 @@ module.exports.setOfferStatus = async (req, res, next) => {
 			result = await offerService.rejectOffer(offerId, creatorId, contestId, t);
 		} else if (command === 'resolve') {
 			result = await offerService.resolveOffer(contestId, creatorId, orderId, offerId, priority, t);
+		}
+		else if (command === 'active') {
+			result = await offerService.activeOffer(offerId, t);
 		}
 		res.status(200).send(result);
 		t.commit();
@@ -58,24 +79,30 @@ module.exports.getAllOffersByContestId = async (req, res, next) => {
 			pagination: { limit, offset },
 		} = req;
 		const offers = await Offer.findAll({
-			where: role === CONSTANTS.CREATOR
-				? { userId, contestId }
-				: { contestId, status: CONSTANTS.OFFER_STATUS_ACTIVE },
+			where:
+				role === CONSTANTS.MODERATOR
+					? { contestId, status: CONSTANTS.OFFER_STATUS_PENDING }
+					: role === CONSTANTS.CREATOR
+						? { userId, contestId }
+						: { contestId, status: CONSTANTS.OFFER_STATUS_ACTIVE },
 			attributes: { exclude: ['userId', 'contestId'] },
 			order: [['status', 'desc'], ['id', 'asc']],
 			limit, offset,
 			raw: true,
 			nest: true,
-			include: [{
-				model: User,
-				required: true,
-				attributes: { exclude: ['password', 'role', 'balance', 'accessToken'] },
-			}, {
-				model: Rating,
-				required: false,
-				where: { userId },
-				attributes: { exclude: ['userId', 'offerId'] },
-			}],
+			include:
+				role === CONSTANTS.MODERATOR
+					? []
+					: [{
+						model: User,
+						required: true,
+						attributes: { exclude: ['password', 'role', 'balance', 'accessToken'] },
+					}, {
+						model: Rating,
+						required: false,
+						where: { userId },
+						attributes: { exclude: ['userId', 'offerId'] },
+					}],
 		});
 		offers.forEach(offer => {
 			if (offer.Rating) {
@@ -113,5 +140,3 @@ module.exports.changeMark = async (req, res, next) => {
 		next(err);
 	}
 };
-
-

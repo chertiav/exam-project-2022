@@ -24,11 +24,31 @@ export function* addOfferSaga({ payload }) {
 	}
 }
 
+export function* deleteOfferSaga({ payload }) {
+	yield put(offerActions.deleteOffersRequest());
+	try {
+		yield restController.deleteOffer(payload);
+		yield put(offerActions.deleteOffersSuccess(payload));
+	} catch (error) {
+		yield put(offerActions.deleteOffersError(error.response));
+	}
+}
+
 export function* setOfferStatusSaga({ payload }) {
 	yield put(offerActions.setOfferStatusRequest());
 	try {
 		const { data } = yield restController.setOfferStatus(payload);
 		yield put(offerActions.setOfferStatusSuccess(data));
+	} catch (error) {
+		yield put(offerActions.setOfferStatusError(error.response));
+	}
+}
+
+export function* setOfferStatusModeratorSaga({ payload }) {
+	yield put(offerActions.setOfferStatusRequest());
+	try {
+		const { data } = yield restController.setOfferStatusModerator(payload);
+		yield put(offerActions.setOfferStatusModeratorSuccess(data));
 	} catch (error) {
 		yield put(offerActions.setOfferStatusError(error.response));
 	}

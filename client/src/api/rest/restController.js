@@ -18,8 +18,7 @@ export const getActiveContests = ({
 	http.get(`/contests/getAllContests?offset=${offset}&limit=${limit}
 	&typeIndex=${typeIndex}&contestId=${contestId}&industry=${industry}
 	&awardSort=${awardSort}&ownEntries=${ownEntries}`);
-export const getModeratorContests = ({
-	offset, limit, typeIndex, contestId, industry, awardSort, ownEntries }) =>
+export const getModeratorContests = ({ offset, limit, typeIndex, contestId, industry }) =>
 	http.get(`/contests/getAllContestsForModerator?offset=${offset}&limit=${limit}
 	&typeIndex=${typeIndex}&contestId=${contestId}&industry=${industry}`);
 export const getContestById = (id) => http.get(`/contests/getContestById/${id}`);
@@ -35,7 +34,9 @@ export const getAllOffersByContestId = ({ id, limit, offset }) =>
 	http.get(`/offers/getAllOffers?contestId=${id}&limit=${limit}&offset=${offset}`);
 export const addNewOffer = (data) => http.post('/offers/addNewOffer', data);
 export const setOfferStatus = (data) => http.patch('/offers/setOfferStatus', data);
+export const setOfferStatusModerator = (data) => http.patch('/offers/setOfferStatusModerator', data);
 export const changeMark = (data) => http.patch('/offers/changeMark', data);
+export const deleteOffer = ({ offerId }) => http.delete(`/offers/${offerId}`);
 
 //chat
 export const getDialogMessages = (data) => http.get(`/chat/getChat?interlocutorId=${data}`);

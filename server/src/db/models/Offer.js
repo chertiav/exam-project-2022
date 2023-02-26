@@ -4,7 +4,12 @@ module.exports = (sequelize, DataTypes) => {
 		static associate({ User, Contest, Rating }) {
 			this.belongsTo(User, { foreignKey: 'userId', sourceKey: 'id' });
 			this.belongsTo(Contest, { foreignKey: 'contestId', sourceKey: 'id' });
-			this.hasOne(Rating, { foreignKey: 'offerId', targetKey: 'id' });
+			this.hasOne(Rating, {
+				foreignKey: 'offerId',
+				targetKey: 'id',
+				onDelete: 'SET NULL',
+				onUpdate: 'CASCADE',
+			});
 		}
 	}
 	Offer.init({

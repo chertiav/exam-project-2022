@@ -39,7 +39,7 @@ module.exports.createWhereAllContests = (
 	if (this.parseBool(industry)) {
 		Object.assign(object.where, { industry });
 	}
-	if (this.parseBool(awardSort), awardSort) {
+	if (this.parseBool(awardSort)) {
 		object.order.push(['prize', awardSort]);
 	}
 	Object.assign(object.where, {
