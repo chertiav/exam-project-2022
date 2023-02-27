@@ -5,6 +5,7 @@ const { sequelize, Sequelize, Offer, Rating, User } = require('../db/models');
 const ApplicationError = require('../errors/ApplicationError');
 const { UserTokenDto } = require('../dtos/UserDto');
 const { createCountHaveMoreOffers } = require('../utils/functions');
+const mailService = require('./mailService/mailService');
 
 module.exports.addNewOffer = async (req, res, next) => {
 
@@ -32,13 +33,15 @@ module.exports.addNewOffer = async (req, res, next) => {
 
 module.exports.deleteOffer = async (req, res, next) => {
 	const t = await sequelize.transaction();
+
 	try {
-		const id = req.params.id;
+		const { id, email } = req.query;
 		const deletedOffer = await Offer.destroy({
 			where: { id },
 			transaction: t,
 		});
 		if (deletedOffer) {
+			await mailService.sendMail(email, 'Offer removed by moderator');
 			res.status(200).send('Ok');
 		}
 		t.commit();
@@ -52,7 +55,7 @@ module.exports.setOfferStatus = async (req, res, next) => {
 	const t = await sequelize.transaction();
 	try {
 		const {
-			body: { command, offerId, creatorId, contestId, orderId, priority },
+			body: { command, offerId, creatorId, contestId, orderId, priority, email },
 		} = req;
 		let result;
 		if (command === 'reject') {
@@ -61,11 +64,12 @@ module.exports.setOfferStatus = async (req, res, next) => {
 			result = await offerService.resolveOffer(contestId, creatorId, orderId, offerId, priority, t);
 		}
 		else if (command === 'active') {
-			result = await offerService.activeOffer(offerId, t);
+			result = await offerService.activeOffer(offerId, email, t);
 		}
 		res.status(200).send(result);
 		t.commit();
 	} catch (err) {
+		console.log(err);
 		t.rollback();
 		next(err);
 	}
@@ -92,7 +96,11 @@ module.exports.getAllOffersByContestId = async (req, res, next) => {
 			nest: true,
 			include:
 				role === CONSTANTS.MODERATOR
-					? []
+					? [{
+						model: User,
+						required: true,
+						attributes: { exclude: ['id', 'firstName', 'lastName', 'displayName', 'password', 'avatar', 'role', 'balance', 'accessToken', 'rating'] },
+					}]
 					: [{
 						model: User,
 						required: true,

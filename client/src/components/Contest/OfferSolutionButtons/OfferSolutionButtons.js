@@ -8,18 +8,6 @@ import './confirmStyle.css';
 
 export const OfferSolutionButtons = ({ setOfferStatus, data, role }) => {
 
-	const changeOfferStatus = (solution) =>
-		role === CONSTANTS.APP_CONSTANTS.MODERATOR
-			? setOfferStatus({
-				offerId: data.id,
-				command: solution
-			})
-			: setOfferStatus({
-				creatorId: data.User.id,
-				offerId: data.id,
-				command: solution
-			});
-
 	const dataResolve = role === CONSTANTS.APP_CONSTANTS.MODERATOR
 		? 'active' : 'resolve';
 
@@ -33,7 +21,7 @@ export const OfferSolutionButtons = ({ setOfferStatus, data, role }) => {
 			buttons: [
 				{
 					label: 'Yes',
-					onClick: () => changeOfferStatus(solution)
+					onClick: () => setOfferStatus({ offerId: data.id, command: solution, userData: data.User })
 				},
 				{ label: 'No' },
 			],

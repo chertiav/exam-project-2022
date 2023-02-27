@@ -59,12 +59,14 @@ export const Contest = () => {
 		}
 	}, [getDataByContest, clearContestById])
 
-	const setOfferStatus = ({ creatorId, offerId, command }) => {
+	const setOfferStatus = ({ userData, offerId, command }) => {
 		offerStoreCleareError();
 		const { id, orderId, priority } = contestData;
 		const obj = data.role === CONSTANTS.APP_CONSTANTS.MODERATOR
-			? command === 'delete' ? { offerId } : { command, offerId }
-			: { command, offerId, creatorId, orderId, priority, contestId: id };
+			? command === 'delete'
+				? { offerId, email: userData.email }
+				: { command, offerId, email: userData.email }
+			: { command, offerId, creatorId: userData.id, orderId, priority, contestId: id };
 		data.role === CONSTANTS.APP_CONSTANTS.MODERATOR
 			? command === 'delete'
 				? dispatch(offerActions.deleteOffersActions(obj))

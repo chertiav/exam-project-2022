@@ -35,7 +35,7 @@ offerRouter.get(
 );
 
 offerRouter.delete(
-	'/:id',
+	'/delete',
 	checkToken.checkToken,
 	basicMiddlewares.onlyForModerator,
 	offerController.deleteOffer,

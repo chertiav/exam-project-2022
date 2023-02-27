@@ -36,7 +36,7 @@ export const addNewOffer = (data) => http.post('/offers/addNewOffer', data);
 export const setOfferStatus = (data) => http.patch('/offers/setOfferStatus', data);
 export const setOfferStatusModerator = (data) => http.patch('/offers/setOfferStatusModerator', data);
 export const changeMark = (data) => http.patch('/offers/changeMark', data);
-export const deleteOffer = ({ offerId }) => http.delete(`/offers/${offerId}`);
+export const deleteOffer = ({ offerId, email }) => http.delete(`/offers/delete?id=${offerId}&email=${email}`);
 
 //chat
 export const getDialogMessages = (data) => http.get(`/chat/getChat?interlocutorId=${data}`);

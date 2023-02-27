@@ -1,9 +1,10 @@
 const { Offer, sequelize } = require('../../db/models');
 const ApplicationError = require('../../errors/ApplicationError');
-const CONSTANTS = require('../../constants');
+const mailService = require('../mailService/mailService');
 const controller = require('../../socketInit');
 const { updateContestStatus } = require('./contestService');
 const { userService } = require('.');
+const CONSTANTS = require('../../constants');
 
 module.exports.createOffer = async (data, t) => {
 	const result = await Offer.create(data, { transaction: t });
@@ -34,9 +35,10 @@ const updateOfferStatus = async (data, predicate, t) => {
 	}
 };
 
-module.exports.activeOffer = async (offerId, t) => {
+module.exports.activeOffer = async (offerId, email, t) => {
 	const activatedOffer = await updateOffer(
 		{ status: CONSTANTS.OFFER_STATUS_ACTIVE }, { id: offerId }, t);
+	await mailService.sendMail(email, 'Offer approved by moderator');
 	return activatedOffer;
 };
 
