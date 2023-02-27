@@ -149,11 +149,11 @@ module.exports.updateContest = async (req, res, next) => {
 module.exports.getContestsForModerator = async (req, res, next) => {
 	try {
 		const {
-			query: { typeIndex, contestId, industry, awardSort },
+			query: { typeIndex, contestId, industry },
 			pagination: { limit, offset },
 			tokenData: { role },
 		} = req;
-		const predicates = createWhereAllContests(typeIndex, contestId, industry, awardSort, role);
+		const predicates = createWhereAllContests(typeIndex, contestId, industry, null, role);
 		const allContests = await Contest.findAll({
 			where: {
 				id: {

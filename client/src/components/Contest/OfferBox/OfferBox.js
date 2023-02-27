@@ -124,8 +124,9 @@ export const OfferBox = ({ data, needButtons, setOfferStatus, contestType }) => 
 						/>
 					)}
 				</div>
-				{role === CONSTANTS.APP_CONSTANTS.CREATOR &&
-					<i onClick={goChat} className="fas fa-comments" />}
+				{role !== CONSTANTS.APP_CONSTANTS.CREATOR &&
+					role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+					< i onClick={goChat} className="fas fa-comments" />}
 			</div>
 			{needButtons(data.status) &&
 				<Components.OfferSolutionButtons
