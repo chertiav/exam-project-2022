@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
 			this.hasMany(Offer, { foreignKey: 'userId', targetKey: 'id' });
 			this.hasMany(Contest, { foreignKey: 'userId', targetKey: 'id' });
 			this.hasMany(Rating, { foreignKey: 'userId', targetKey: 'id' });
-			this.hasMany(Message, { foreignKey: 'userId', targetKey: 'id' });
+			this.hasMany(Message, { foreignKey: 'sender', targetKey: 'id' });
 			this.hasMany(Catalog, { foreignKey: 'userId', targetKey: 'id' });
 		}
 	}

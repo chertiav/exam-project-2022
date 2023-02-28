@@ -2,8 +2,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
 	class Message extends Model {
 		static associate({ User, Conversation }) {
-			this.belongsTo(User, { foreignKey: 'userId', sourceKey: 'id' });
-			this.belongsTo(Conversation, { foreignKey: 'conversId', sourceKey: 'id' });
+			this.belongsTo(User, { foreignKey: 'sender', sourceKey: 'id' });
+			this.belongsTo(Conversation, { foreignKey: 'conversation', sourceKey: 'id' });
 		}
 	}
 	Message.init({
@@ -13,11 +13,11 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			type: DataTypes.INTEGER,
 		},
-		userId: {
+		sender: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
-		conversId: {
+		conversation: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		createdAt: {
 			allowNull: true,
-			type: DataTypes.STRING,
+			type: DataTypes.DATE,
 			defaultValue: DataTypes.NOW,
 		},
 	}, {

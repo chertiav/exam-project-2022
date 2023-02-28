@@ -2,8 +2,8 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
 	class Conversation extends Model {
 		static associate({ Catalog, Message }) {
-			this.hasMany(Catalog, { foreignKey: 'conversId', targetKey: 'id' });
-			this.hasMany(Message, { foreignKey: 'conversId', targetKey: 'id' });
+			this.hasMany(Catalog, { foreignKey: 'chats', targetKey: 'id' });
+			this.hasMany(Message, { foreignKey: 'conversation', targetKey: 'id' });
 		}
 	}
 	Conversation.init({

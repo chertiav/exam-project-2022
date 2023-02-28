@@ -10,7 +10,7 @@ module.exports = {
 					key: 'id',
 				},
 			},
-			conversId: {
+			chats: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
 				primaryKey: true,
