@@ -1,8 +1,7 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
 	class Conversation extends Model {
-		static associate({ Catalog, Message }) {
-			this.hasMany(Catalog, { foreignKey: 'chats', targetKey: 'id' });
+		static associate({ Message }) {
 			this.hasMany(Message, { foreignKey: 'conversation', targetKey: 'id' });
 		}
 	}

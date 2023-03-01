@@ -1,27 +1,27 @@
 module.exports = {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.createTable('Catalogs', {
+			id: {
+				allowNull: false,
+				autoIncrement: true,
+				primaryKey: true,
+				type: Sequelize.INTEGER,
+			},
 			userId: {
 				type: Sequelize.INTEGER,
 				allowNull: false,
-				primaryKey: true,
 				references: {
 					model: 'Users',
 					key: 'id',
 				},
 			},
-			chats: {
-				type: Sequelize.INTEGER,
-				allowNull: false,
-				primaryKey: true,
-				references: {
-					model: 'Conversations',
-					key: 'id',
-				},
-			},
 			catalogName: {
 				type: Sequelize.STRING,
-				allowNull: true,
+				allowNull: false,
+			},
+			chats: {
+				allowNull: false,
+				type: Sequelize.ARRAY(Sequelize.INTEGER),
 			},
 		});
 	},
