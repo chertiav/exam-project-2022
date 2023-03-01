@@ -1,38 +1,36 @@
 //=================================================================
 const controller = require('../socketInit');
-const { User } = require('../db/models');
-const { models: { Conversations, Messages, Catalogs } } = require('../db/models/mongoModels');
-const { userService } = require('./service');
+const { User, Conversation, Message, Catalog, sequelize, Sequelize } = require('../db/models');
+const { userService, chatService } = require('./service');
 const { UserChatDto, UserInterlocutorChatDto } = require('../dtos/UserDto');
 const ApplicationError = require('../errors/ApplicationError');
 
+
 module.exports.addMessage = async (req, res, next) => {
+	const { tokenData, body } = req;
+	const t = await sequelize.transaction();
 	try {
-		const { tokenData, body } = req;
 		const participants = [tokenData.userId, body.recipient];
 		participants.sort((participant1, participant2) => participant1 - participant2);
-		const newConversation = await Conversations.findOneAndUpdate(
-			{ participants },
-			{ participants, blackList: [false, false], favoriteList: [false, false] },
-			{
-				upsert: true,
-				new: true,
-				setDefaultsOnInsert: true,
-				useFindAndModify: false,
-			});
+		const [newConversation, isNewConversation] = await Conversation.findOrCreate({
+			where: { participants },
+			raw: true,
+			defaults: {
+				participants,
+				blackList: [false, false],
+				favoriteList: [false, false],
+			},
+		});
 		const messageBody = {
 			sender: tokenData.userId,
 			body: body.messageBody,
-			conversation: newConversation._id,
+			conversation: newConversation.id,
 		};
-		const message = await new Messages(messageBody).save();
-		if (!message) {
-			throw ApplicationError.ServerError('message not found');
-		}
-		message._doc.participants = participants;
+		const message = await chatService.messageCreation(messageBody, t);
+		message.participants = participants;
 		const interlocutorId = participants.filter((participant) => participant !== tokenData.userId)[0];
 		const preview = {
-			_id: newConversation._id,
+			_id: newConversation.id,
 			sender: tokenData.userId,
 			text: body.messageBody,
 			createAt: message.createdAt,
@@ -43,7 +41,7 @@ module.exports.addMessage = async (req, res, next) => {
 		controller.getChatController().emitNewMessage(interlocutorId, {
 			message,
 			preview: {
-				_id: newConversation._id,
+				_id: newConversation.id,
 				sender: tokenData.userId,
 				text: body.messageBody,
 				createAt: message.createdAt,
@@ -57,8 +55,10 @@ module.exports.addMessage = async (req, res, next) => {
 			message,
 			preview: Object.assign(preview, { interlocutor: body.interlocutor }),
 		});
+		t.commit();
 	} catch (err) {
-		next(err);
+		t.rollback();
+		next(ApplicationError.ServerError(null, err));
 	}
 };
 
@@ -68,28 +68,18 @@ module.exports.getChat = async (req, res, next) => {
 		const interlocutorId = parseInt(query.interlocutorId);
 		const participants = [userId, interlocutorId];
 		participants.sort((participant1, participant2) => participant1 - participant2);
-		const messages = await Messages.aggregate([
-			{
-				$lookup: {
-					from: 'conversations',
-					localField: 'conversation',
-					foreignField: '_id',
-					as: 'conversationData',
-				},
+		const messages = await Message.findAll({
+			raw: true,
+			nest: true,
+			order: [['createdAt', 'ASC']],
+			include: {
+				model: Conversation,
+				required: true,
+				where: { participants },
+				attributes: [],
 			},
-			{ $match: { 'conversationData.participants': participants } },
-			{ $sort: { createdAt: 1 } },
-			{
-				$project: {
-					'_id': 1,
-					'sender': 1,
-					'body': 1,
-					'conversation': 1,
-					'createdAt': 1,
-					'updatedAt': 1,
-				},
-			},
-		]);
+			attributes: [['id', '_id'], 'sender', 'body', 'conversation', 'createdAt'],
+		});
 		if (!messages) {
 			throw ApplicationError.ServerError('Any messages hasn`t been found');
 		}
@@ -106,30 +96,38 @@ module.exports.getChat = async (req, res, next) => {
 module.exports.getPreview = async (req, res, next) => {
 	try {
 		const { tokenData: { userId } } = req;
-		const conversations = await Messages.aggregate([
-			{
-				$lookup: {
-					from: 'conversations',
-					localField: 'conversation',
-					foreignField: '_id',
-					as: 'conversationData',
+		const conversations = await Message.findAll({
+			include: {
+				model: Conversation,
+				required: true,
+				where: {
+					participants: { [Sequelize.Op.contains]: [userId] },
+				},
+				attributes: [],
+			},
+			order: [['createdAt', 'DESC']],
+			where: {
+				id: {
+					[Sequelize.Op.in]: [Sequelize.literal(`
+						SELECT id FROM (
+							SELECT id, conversation, "createdAt",
+								MAX("createdAt") over (partition by conversation) as "maxCreatedAt"
+							FROM "Messages") as max_created_at
+						WHERE "createdAt" = "maxCreatedAt"
+					`)],
 				},
 			},
-			{ $unwind: '$conversationData' },
-			{ $match: { 'conversationData.participants': userId } },
-			{ $sort: { createdAt: -1 } },
-			{
-				$group: {
-					_id: '$conversationData._id',
-					sender: { $first: '$sender' },
-					text: { $first: '$body' },
-					createAt: { $first: '$createdAt' },
-					participants: { $first: '$conversationData.participants' },
-					blackList: { $first: '$conversationData.blackList' },
-					favoriteList: { $first: '$conversationData.favoriteList' },
-				},
-			},
-		]);
+			attributes: [
+				[Sequelize.col('Conversation.id'), '_id'],
+				['sender', 'sender'],
+				['body', 'text'],
+				['createdAt', 'createAt'],
+				[Sequelize.col('Conversation.participants'), 'participants'],
+				[Sequelize.col('Conversation.blackList'), 'blackList'],
+				[Sequelize.col('Conversation.favoriteList'), 'favoriteList'],
+			],
+			raw: true,
+		});
 		if (!conversations) {
 			throw ApplicationError.ServerError('Any messages hasn`t been found');
 		}
@@ -158,89 +156,122 @@ module.exports.getPreview = async (req, res, next) => {
 };
 
 module.exports.blackList = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { participants, blackListFlag } } = req;
-		const predicate = 'blackList.' + participants.indexOf(userId);
-		const chat = await Conversations.findOneAndUpdate(
-			{ participants }, { $set: { [predicate]: blackListFlag } }, { new: true });
+		const blackList = await chatService.findChat({
+			where: { participants }, attributes: ['blackList'], raw: true,
+		});
+		blackList.blackList[participants.indexOf(userId)] = blackListFlag;
+		const chat = await chatService.updateConversation(blackList,
+			{ participants }, t);
 		if (!chat) {
 			throw ApplicationError.ServerError('Any chat messages hasn`t been updeted');
 		}
 		const interlocutorId = participants.filter((participant) => participant !== userId)[0];
 		controller.getChatController().emitChangeBlockStatus(interlocutorId, chat);
 		res.status(200).send(chat);
+		t.commit();
 	} catch (err) {
+		t.rollback();
 		next(err);
 	}
 };
 
 module.exports.favoriteChat = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { participants, favoriteFlag } } = req;
-		const predicate = 'favoriteList.' + participants.indexOf(userId);
-		const chat = await Conversations.findOneAndUpdate(
-			{ participants }, { $set: { [predicate]: favoriteFlag } }, { new: true });
+		const favoriteList = await chatService.findChat({
+			where: { participants }, attributes: ['favoriteList'], raw: true,
+		});
+		favoriteList.favoriteList[participants.indexOf(userId)] = favoriteFlag;
+		const chat = await chatService.updateConversation(favoriteList,
+			{ participants }, t);
 		if (!chat) {
 			throw ApplicationError.ServerError('Any chat messages hasn`t been updeted');
 		}
 		res.status(200).send(chat);
+		t.commit();
+	} catch (err) {
+		t.rollback();
+		next(err);
+	}
+};
+
+module.exports.getCatalogs = async (req, res, next) => {
+	try {
+		const { tokenData: { userId } } = req;
+		const catalogs = await Catalog.findAll({
+			where: { userId },
+			attributes: [['id', '_id'], 'catalogName', 'chats'],
+			raw: true,
+		});
+		if (!catalogs) {
+			throw ApplicationError.ServerError('Any catalogs messages hasn`t been found');
+		}
+		res.status(200).send(catalogs);
 	} catch (err) {
 		next(err);
 	}
 };
 
 module.exports.createCatalog = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { chatId, catalogName } } = req;
 		const catalogBody = { userId, catalogName, chats: [chatId] };
-		const catalog = await new Catalogs(catalogBody).save();
+		const catalog = await Catalog.create(catalogBody, { transaction: t });
 		if (!catalog) {
 			throw ApplicationError.ServerError('Any catalog messages hasn`t been found');
 		}
 		res.status(200).send(catalog);
+		t.commit();
 	} catch (err) {
+		t.rollback();
 		next(err);
 	}
 };
 
 module.exports.updateNameCatalog = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { catalogId: _id, catalogName } } = req;
-		const catalog = await Catalogs.findOneAndUpdate({ _id, userId },
-			{ catalogName }, { new: true });
-		if (!catalog) {
-			throw ApplicationError.ServerError('Any catalog messages hasn`t been updeted');
-		}
+		const catalog = await chatService.updateCatalog({ catalogName }, { id: _id, userId }, t);
+		t.commit();
 		res.status(200).send(catalog);
 	} catch (err) {
+		t.rollback();
 		next(err);
 	}
 };
 
 module.exports.addNewChatToCatalog = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { catalogId: _id, chatId } } = req;
-		const catalog = await Catalogs.findOneAndUpdate({ _id, userId },
-			{ $addToSet: { chats: chatId } }, { new: true });
-		if (!catalog) {
-			throw ApplicationError.ServerError('Any catalog messages hasn`t been updeted');
-		}
-		res.send(catalog);
+		const catalog = await chatService.updateCatalog({
+			chats: Sequelize.fn('array_append', Sequelize.col('chats'), chatId),
+		}, { id: _id, userId }, t);
+		res.status(200).send(catalog);
+		t.commit();
 	} catch (err) {
+		t.rollback();
 		next(err);
 	}
 };
 
 module.exports.removeChatFromCatalog = async (req, res, next) => {
+	const t = await sequelize.transaction();
 	try {
 		const { tokenData: { userId }, body: { catalogId: _id, chatId } } = req;
-		const catalog = await Catalogs.findOneAndUpdate({ _id, userId },
-			{ $pull: { chats: chatId } }, { new: true });
-		if (!catalog) {
-			throw ApplicationError.ServerError('Any catalog messages hasn`t been updeted');
-		}
+		const catalog = await chatService.updateCatalog({
+			chats: Sequelize.fn('array_remove', Sequelize.col('chats'), chatId),
+		}, { id: _id, userId }, t);
 		res.status(200).send(catalog);
+		t.commit();
 	} catch (err) {
+		t.rollback();
 		next(err);
 	}
 };
@@ -248,7 +279,7 @@ module.exports.removeChatFromCatalog = async (req, res, next) => {
 module.exports.deleteCatalog = async (req, res, next) => {
 	try {
 		const { params: { catalogId } } = req;
-		const deleteCatalog = await Catalogs.findByIdAndDelete(catalogId);
+		const deleteCatalog = await Catalog.destroy({ where: { id: catalogId } });
 		if (!deleteCatalog) {
 			throw ApplicationError.ServerError('Any catalog messages hasn`t been delete');
 		}
@@ -258,18 +289,3 @@ module.exports.deleteCatalog = async (req, res, next) => {
 	}
 };
 
-module.exports.getCatalogs = async (req, res, next) => {
-	try {
-		const { tokenData: { userId } } = req;
-		const catalogs = await Catalogs.aggregate([
-			{ $match: { userId } },
-			{ $project: { _id: 1, catalogName: 1, chats: 1 } },
-		]);
-		if (!catalogs) {
-			throw ApplicationError.ServerError('Any catalogs messages hasn`t been found');
-		}
-		res.status(200).send(catalogs);
-	} catch (err) {
-		next(err);
-	}
-};
