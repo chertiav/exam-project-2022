@@ -68,7 +68,7 @@
 - SMTP_PASSWORD =
 - API_URL = http://localhost:3000
 
-# в .env () в проэкта, где находится docker-compose-dev.yaml
+# в .env в корне проэкта, где находится docker-compose-dev.yaml
 
 хронятся переменные
 
