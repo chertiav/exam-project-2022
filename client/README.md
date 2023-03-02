@@ -49,3 +49,29 @@
 
 - описаны Sequelize модели и миграции
 - измененна логика запросов на сервере
+
+# в server/.env
+
+хронятся переменные
+
+- POSTGRES_USER = postgres
+- POSTGRES_PASSWORD =
+- POSTGRES_DB = squadhelp
+- POSTGRES_HOST = db-dev
+- MONGO_HOST = mongo-dev
+- PORT = 5000
+- STATIC_PATH = public/images
+- JWT_SECRET =
+- SMTP_HOST = smtp.gmail.com
+- SMTP_PORT = 587
+- SMTP_USER =
+- SMTP_PASSWORD =
+- API_URL = http://localhost:3000
+
+# в .env () в проэкта, где находится docker-compose-dev.yaml
+
+хронятся переменные
+
+- POSTGRES_USER = postgres
+- POSTGRES_PASSWORD =
+- POSTGRES_DB = squadhelp
