@@ -38,6 +38,8 @@ const App = () => {
 					<Route element={<CustomRoute.ProtectedRoute />}>
 						<Route path='/account' element={<Pages.UserProfile />} />
 						<Route path='/dashboard' element={<Pages.Dashboard />} />
+						<Route path='/events' element={<Pages.Events />} />
+						<Route path='/button-group' element={<Pages.ButtonGroup />} />
 						{data?.role !== 'moderator' &&
 							<>
 								<Route path='/contest/:id' element={<Pages.Contest />} />

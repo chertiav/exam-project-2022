@@ -10,4 +10,6 @@ export { ContestCreation } from './ContestCreation/ContestCreation';
 export { Payment } from './Payment/Payment';
 export { Contest } from './Contest/Contest';
 export { HowItWorks } from './HowItWorks/HowItWorks';
+export { Events } from './Events/Events';
+export { ButtonGroup } from './ButtonGroup/ButtonGroup';
 

@@ -69,6 +69,8 @@ export const HEADER_CONSTANTS = {
 		mainElementMenu: [
 			{ title: 'View Dashboard', linkPage: '/dashboard' },
 			{ title: 'My Account', linkPage: '/account' },
+			{ title: 'Events', linkPage: '/events' },
+			{ title: 'Button Group', linkPage: '/button-group' },
 			{ title: 'Messages', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			{ title: 'Affiliate Dashboard', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 		],
