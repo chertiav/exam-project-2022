@@ -72,7 +72,6 @@ module.exports.setOfferStatus = async (req, res, next) => {
 		res.status(200).send(result);
 		t.commit();
 	} catch (err) {
-		console.log(err);
 		t.rollback();
 		loggingError(err);
 		next(err);

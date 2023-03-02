@@ -27,7 +27,6 @@ module.exports.job = new CronJob(
 			arrayData
 				.filter(item => item !== '')
 				.forEach(item => {
-					console.log(item);
 					const end = item.indexOf('stackTrace');
 					const str = item.slice(0, end - 2);
 					fs.appendFile(file, str + '}\n', (err) => {

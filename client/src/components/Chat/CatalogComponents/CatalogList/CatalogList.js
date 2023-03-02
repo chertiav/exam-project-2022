@@ -22,7 +22,7 @@ export const CatalogList = ({ catalogList }) => {
 	const getListCatalog = () => {
 		const elementList = catalogList.map((catalog) =>
 			<Components.Catalog
-				key={catalog._id}
+				key={new Date() + catalog._id}
 				catalog={catalog}
 				deleteCatalog={deleteCatalog}
 				goToCatalog={goToCatalog}
