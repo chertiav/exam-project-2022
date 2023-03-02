@@ -1,8 +1,8 @@
+require('dotenv').config();
 module.exports = {
 	development: {
 		database: 'squadhelp-chat',
-		host: 'localhost',
-		// host: 'mongo-dev',
+		host: process.env.POSTGRES_HOST,
 		port: 27017,
 	},
 	production: {
