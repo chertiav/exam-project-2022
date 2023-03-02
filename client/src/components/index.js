@@ -6,9 +6,22 @@ export { UserInfoMenuButtons } from './Layout/Header/UserInfoMenuButtons/UserInf
 export { FixedHeader } from './Layout/Header/FixedHeader/FixedHeader';
 export { LoginSignnUpHeaders } from './Layout/Header/LoginSignnUpHeaders/LoginSignnUpHeaders';
 export { NavContainer } from './Layout/Header/NavContainer/NavContainer';
+export { HeaderWhite } from './Layout/Header/HeaderWhite/HeaderWhite';
+export { HeaderBlue } from './Layout/Header/HeaderBlue/HeaderBlue';
+export { NavBarHeaderBlueTop } from './Layout/Header/NavBarHeaderBlueTop/NavBarHeaderBlueTop';
+export { NavBoxHeaderBlueTop } from './Layout/Header/NavBoxHeaderBlueTop/NavBoxHeaderBlueTop';
+export { MenuItemListAuth } from './Layout/Header/MenuItemListAuth/MenuItemListAuth';
+export { MenuBoxHeaderBlue } from './Layout/Header/MenuBoxHeaderBlue/MenuBoxHeaderBlue';
+export { NavBarHeaderBlueBottom } from './Layout/Header/NavBarHeaderBlueBottom/NavBarHeaderBlueBottom';
+
 //Footer
+export { Footer } from './Layout/Footer/Footer/Footer';
 export { FooterMain } from './Layout/Footer/FooterMain/FooterMain';
 export { FooterRegistration } from './Layout/Footer/FooterRegistration/FooterRegistration';
+export { FooterMainGrey } from './Layout/Footer/FooterMainGrey/FooterMainGrey';
+export { FooterLinks } from './Layout/Footer/FooterLinks/FooterLinks';
+export { FooterTrendingSearches } from './Layout/Footer/FooterTrendingSearches/FooterTrendingSearches';
+export { FooterSocial } from './Layout/Footer/FooterSocial/FooterSocial';
 
 //NotFound
 export { NotFoundBlock } from './NotFound/NotFoundBlock/NotFoundBlock';
@@ -107,6 +120,31 @@ export { DialogList } from './Chat/DialogComponents/DialogList/DialogList';
 export { DialogBox } from './Chat/DialogComponents/DialogBox/DialogBox';
 export { DialogListContainer } from './Chat/DialogComponents/DialogListContainer/DialogListContainer';
 
+//HowItWorks
+export { HowDoesWork } from './HowItWorks/HowDoesWork/HowDoesWork';
+export { ButtonDecorate } from './HowItWorks/ButtonDecorate/ButtonDecorate';
+export { TitleBlock } from './HowItWorks/TitleBlock/TitleBlock';
+export { TextBlock } from './HowItWorks/TextBlock/TextBlock';
+export { TextListItem } from './HowItWorks/TextListItem/TextListItem';
+export { TextWidthLink } from './HowItWorks/TextWidthLink/TextWidthLink';
+export { TextWidthLinkBreak } from './HowItWorks/TextWidthLinkBreak/TextWidthLinkBreak';
+export { ButtonCard } from './HowItWorks/ButtonCard/ButtonCard';
+export { OurServices } from './HowItWorks/OurServices/OurServices';
+export { OurServicesCard } from './HowItWorks/OurServicesCard/OurServicesCard';
+export { HowContestWork } from './HowItWorks/HowContestWork/HowContestWork';
+export { IconBox } from './HowItWorks/IconBox/IconBox';
+export { FaqTopicsBlock } from './HowItWorks/FaqTopicsBlock/FaqTopicsBlock';
+export { FaqTopicsBlockNav } from './HowItWorks/FaqTopicsBlockNav/FaqTopicsBlockNav';
+export { FaqTopicsBlockTopicsBox } from './HowItWorks/FaqTopicsBlockTopicsBox/FaqTopicsBlockTopicsBox';
+export { FaqTopicsBlockTopicsCard } from './HowItWorks/FaqTopicsBlockTopicsCard/FaqTopicsBlockTopicsCard';
+export { ReadyToGetStarted } from './HowItWorks/ReadyToGetStarted/ReadyToGetStarted';
+export { StatisticBlock } from './HowItWorks/StatisticBlock/StatisticBlock';
+export { PricingBox } from './HowItWorks/PricingBox/PricingBox';
+export { PricingBoxWhite } from './HowItWorks/PricingBoxWhite/PricingBoxWhite';
+export { PricingBoxIcon } from './HowItWorks/PricingBoxIcon/PricingBoxIcon';
+export { PricingBoxWhiteModal } from './HowItWorks/PricingBoxWhiteModal/PricingBoxWhiteModal';
+export { PricingBoxBlue } from './HowItWorks/PricingBoxBlue/PricingBoxBlue';
+export { ClientsBox } from './HowItWorks/ClientsBox/ClientsBox';
 
 //UI
 export * as UI from './UI';

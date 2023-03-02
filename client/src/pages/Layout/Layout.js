@@ -15,7 +15,7 @@ export const Layout = () => {
 			<Grid container flex={'1 1 auto'}>
 				<Outlet />
 			</Grid>
-			{checkPathname && < Components.FooterMain />}
+			{checkPathname && < Components.Footer />}
 			{pathname === "/registration" && < Components.FooterRegistration />}
 		</Grid>
 	)

@@ -1,4 +1,5 @@
 import { HEADER_CONSTANTS } from './headerConstants'
+import { APP_CONSTANTS } from './appConstants'
 
 const nameStartPrice = 199;
 const logoStartPrice = 299;
@@ -7,45 +8,45 @@ export const FOOTER_CONSTANTS = {
 		{
 			title: 'SQUADHELP',
 			items: [
-				'About',
-				'Contact',
-				'How It Works?',
-				'Testimonials',
-				'Our Work',
+				{ title: 'About', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Contact', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'How It Works', linkPage: '/how-it-works' },
+				{ title: 'Testimonials', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Our Work', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'RESOURCES',
 			items: [
-				'How It Works',
-				'Become a Creative',
-				'Business Name Generator',
-				'Discussion Forum',
-				'Blog',
-				'Download eBook',
-				'Pricing',
-				'Help & FAQs',
+				{ title: 'How It Works', linkPage: '/how-it-works' },
+				{ title: 'Become a Creative', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Business Name Generator', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Discussion Forum', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Blog', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Download eBook', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Pricing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Help & FAQs', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'OUR SERVICES',
 			items: [
-				'Naming',
-				'Logo Design',
-				'Taglines',
-				'Premium Names For Sale',
-				'Creative Owned Names For Sale',
-				'Audience Testing',
-				'Trademark Research & Filling',
-				'Managed Agency Service',
+				{ title: 'Naming', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Logo Design', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Taglines', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Premium Names For Sale', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Creative Owned Names For Sale', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Audience Testing', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Trademark Research & Filling', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Managed Agency Service', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 		{
 			title: 'LEGAL',
 			items: [
-				'Terms of Service',
-				'Privacy Policy',
-				'Cookie Policy',
+				{ title: 'Terms of Service', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Privacy Policy', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
+				{ title: 'Cookie Policy', linkPage: APP_CONSTANTS.PATH_NOTN_FOUND },
 			],
 		},
 	],
@@ -96,4 +97,109 @@ export const FOOTER_CONSTANTS = {
 			},
 		]
 	],
+	LINKS_GREY_FOOTER: {
+		linksGroup: [
+			{
+				titleGroup: 'Services',
+				itemsGroup: [
+					{ title: 'Premium Domains For Sale', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Crowdsource Naming', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Naming Agency', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Brandable Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{
+						title: 'Short Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND,
+						items: [
+							{ title: '3 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+							{ title: '4 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+							{ title: '5 Letter Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, },
+						],
+					},
+					{ title: 'One Word Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Industry Domains', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Agency Services', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Logo Contests', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Tagline Contests', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Trademark Filing Service', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Audience Test', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			{
+				titleGroup: 'Tools',
+				itemsGroup: [
+					{ title: 'Business Name Generator', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'How to Name Your Business', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Free Trademark Checker', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Branding Blog', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Business Naming eBook', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Startup Toolkit', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			{
+				titleGroup: 'SquadHelp',
+				itemsGroup: [
+					{ title: 'About', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Contact', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'How It Works', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Testimonials', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Our Work', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					{ title: 'Help & FAQs', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+				],
+			},
+			[
+				{
+					titleGroup: 'Creatives',
+					itemsGroup: [
+						{ title: 'Get Started', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Help & FAQs', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Domain Selling Info', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Discussion Forum', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					],
+				},
+				{
+					titleGroup: 'Legal',
+					itemsGroup: [
+						{ title: 'Terms of Service', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Privacy Policy', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+						{ title: 'Cookie Policy', link: APP_CONSTANTS.PATH_NOTN_FOUND, items: [], },
+					],
+				},
+			]
+		],
+		searchesBlock: {
+			title: 'Trending Searches',
+			text: 'Explore our unique, hand-picked brand & business names for sale along with a matching, premium domain name. Buy instantly for a fixed low price.',
+			searchTerms: [
+				{
+					title: 'Short Names',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+				},
+				{
+					title: 'One Wors',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+				},
+				{
+					title: '4-letter',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+				},
+				{
+					title: '5-letter',
+					linkTo: APP_CONSTANTS.PATH_NOTN_FOUND,
+				},
+			],
+		},
+		socialContact: {
+			year: 'Copyright © 2022 Squadhelp Inc',
+			address: {
+				linkTo: 'https://www.shopperapproved.com/reviews/squadhelp.com/',
+				textStart: 'Squadhelp.com has a Shopper Approved rating of ',
+				textEnd: '4.9/5 based on 2782 ratings and reviews',
+			},
+			social: [
+				{ icons: 'icons8-linkedin-2.svg', linkTo: 'https://www.linkedin.com/company/squadhelp/' },
+				{ icons: 'icons8-instagram.svg', linkTo: 'https://www.instagram.com/squadhelpinc/' },
+				{ icons: 'icons8-twitter.svg', linkTo: 'https://twitter.com/squadhelp' },
+				{ icons: 'icons8-facebook.svg', linkTo: 'https://www.facebook.com/squadhelpinc' },
+			]
+		}
+	},
 }

@@ -30,6 +30,7 @@ const App = () => {
 				<Route path='/' element={<Pages.Layout />}>
 					<Route index element={<Pages.Home />} />
 					<Route path='/not-found' element={<Pages.NotFound />} />
+					<Route path='/how-it-works' element={<Pages.HowItWorks />} />
 					<Route element={<CustomRoute.OnlyNotAuthorizedUserRoute />}>
 						<Route path='/login' element={<Pages.Login />} />
 						<Route path='/registration' element={<Pages.Registration />} />

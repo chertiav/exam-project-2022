@@ -1,14 +1,24 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 //==========================================
-import styles from './Header.module.sass';
-import * as Components from '../../';
 import { userActions, chatActions } from '../../../store/actions';
+import { controller } from '../../../api/ws/socketController';
+import * as Components from '../../';
+import * as CONSTANTS from '../../../constants';
 
 export const Header = () => {
 
-	const { userStore: { data, isFetching } } = useSelector(state => state)
+
 	const dispatch = useDispatch();
+	const { pathname } = useLocation();
+	const navigate = useNavigate();
+
+	const logOut = (id) => {
+		localStorage.removeItem(CONSTANTS.APP_CONSTANTS.ACCESS_TOKEN);
+		controller.unsubscribe(id);
+		navigate('/login');
+	};
 
 	useEffect(() => {
 		dispatch(userActions.getUserAction())
@@ -18,16 +28,12 @@ export const Header = () => {
 		}
 	}, [dispatch]);
 
+	const isPathBlueHeder = CONSTANTS.APP_CONSTANTS.PAGE_FOR_HEADER_BLUE
+		.includes(pathname);
+
 	return (
-		<div className={styles.headerContainer} >
-			<Components.FixedHeader />
-			{!isFetching
-				?
-				<>
-					<Components.LoginSignnUpHeaders data={data} />
-					<Components.NavContainer data={data} />
-				</>
-				: null}
-		</div >
+		!isPathBlueHeder
+			? <Components.HeaderWhite logOut={logOut} />
+			: <Components.HeaderBlue logOut={logOut} />
 	)
 };

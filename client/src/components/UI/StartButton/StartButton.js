@@ -2,11 +2,11 @@ import React from 'react';
 //===============================================
 import styles from './StartButton.module.sass';
 
-export const StartButton = ({ title, navigateTo }) => {
+export const StartButton = ({ title, navigateTo, classes }) => {
 
 	return (
 		<div
-			className={styles.startBtn}
+			className={classes || styles.startBtn}
 			onClick={navigateTo}>
 			{title}
 		</div>

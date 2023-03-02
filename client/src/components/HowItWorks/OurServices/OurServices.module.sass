@@ -1,0 +1,30 @@
+.container
+	@media (min-width: 576px)
+		max-width: 540px
+	@media (min-width: 768px)
+		max-width: 720px
+	@media (min-width: 992px)
+		max-width: 960px
+	@media only screen and (max-width: 1024px)
+		max-width: 100%
+	@media (min-width: 1200px)
+		max-width: 1200px
+	@media (min-width: 1536px)
+		max-width: 1280px
+
+	a
+		text-decoration: none
+		outline: none
+
+	.cardContainer
+		@media (max-width: 768px)
+			flex-wrap: wrap
+
+	.buttonBlock
+		&:hover
+			transform: translateY(-3px)
+			box-shadow: 0 4px 11px rgb(55 125 255 / 35%)
+			transition: all 0.2s ease-in-out
+		@media (max-width: 480px)
+			width: 100%
+			justify-content: center
