@@ -1,3 +1,4 @@
+const { loggingError } = require('../utils/errorLogFunction');
 const { paginationSchem } = require('../validationSchemes/schems');
 
 module.exports.pagination = async (req, res, next) => {
@@ -18,6 +19,7 @@ module.exports.pagination = async (req, res, next) => {
 		}
 		next();
 	} catch (error) {
+		loggingError(error);
 		next(error);
 	}
 };

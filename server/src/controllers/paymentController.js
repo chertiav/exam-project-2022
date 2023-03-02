@@ -4,6 +4,7 @@ const { v4: uuid } = require('uuid');
 const { userService, paymentService } = require('./service');
 const { sequelize, Sequelize, Contest } = require('../db/models');
 const CONSTANTS = require('../constants');
+const { loggingError } = require('../utils/errorLogFunction');
 
 
 module.exports.payment = async (req, res, next) => {
@@ -46,6 +47,7 @@ module.exports.payment = async (req, res, next) => {
 		res.sendStatus(200);
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(err);
 	}
 };
@@ -77,6 +79,7 @@ module.exports.cashout = async (req, res, next) => {
 		res.status(200).send({ balance: updatedUser.balance });
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(err);
 	}
 };

@@ -4,6 +4,7 @@ const cors = require('cors');
 const router = require('./routers');
 const { errorHandler } = require('./middlewares');
 const { static_path } = require('./config/config');
+const { job } = require('./utils/errorLogSchedule');
 require('./db/models/mongoModels');
 
 const app = express();
@@ -18,5 +19,7 @@ app.use(
 	errorHandler.sequelizeErrorHandler,
 	errorHandler.errorHandler,
 );
+
+job.start();
 
 module.exports.app = app;

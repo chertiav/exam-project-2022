@@ -2,6 +2,7 @@ const { userService } = require('./service');
 const { UserAppDto } = require('../dtos/UserDto');
 const { sequelize } = require('../db/models');
 const { deleteFile } = require('../utils/functions');
+const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.updateUser = async (req, res, next) => {
 	const t = await sequelize.transaction();
@@ -21,6 +22,7 @@ module.exports.updateUser = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(err);
 	}
 };

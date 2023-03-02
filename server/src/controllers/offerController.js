@@ -5,6 +5,7 @@ const { sequelize, Sequelize, Offer, Rating, User } = require('../db/models');
 const ApplicationError = require('../errors/ApplicationError');
 const { UserTokenDto } = require('../dtos/UserDto');
 const { createCountHaveMoreOffers } = require('../utils/functions');
+const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.addNewOffer = async (req, res, next) => {
 
@@ -26,6 +27,7 @@ module.exports.addNewOffer = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -46,6 +48,7 @@ module.exports.setOfferStatus = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(err);
 	}
 };
@@ -84,6 +87,7 @@ module.exports.getAllOffersByContestId = async (req, res, next) => {
 		const haveMore = createCountHaveMoreOffers(offers);
 		res.status(200).send({ offers, haveMore });
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.ServerError(null, err));
 	}
 };
@@ -108,6 +112,7 @@ module.exports.changeMark = async (req, res, next) => {
 		t.commit();
 	} catch (err) {
 		t.rollback();
+		loggingError(err);
 		next(err);
 	}
 };

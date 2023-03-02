@@ -1,4 +1,5 @@
 const ApplicationError = require('../errors/ApplicationError');
+const { loggingError } = require('../utils/errorLogFunction');
 const { registrationSchem, loginSchem, contestSchem } = require('../validationSchemes/schems');
 
 module.exports.validateRegistrationData = async (req, res, next) => {
@@ -9,6 +10,7 @@ module.exports.validateRegistrationData = async (req, res, next) => {
 		});
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.BadRequestError('Invalid data for registration', err));
 	}
 };
@@ -20,6 +22,7 @@ module.exports.validateLogin = async (req, res, next) => {
 		});
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.BadRequestError('Invalid data for login', err));
 	}
 };
@@ -38,6 +41,7 @@ module.exports.validateContestCreation = async (req, res, next) => {
 		});
 		next();
 	} catch (err) {
+		loggingError(err);
 		next(ApplicationError.BadRequestError('Invalid data for contest', err));
 	}
 };
