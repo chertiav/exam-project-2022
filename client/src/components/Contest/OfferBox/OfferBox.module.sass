@@ -1,5 +1,7 @@
 .offerContainer
 	display: flex
+	box-sizing: border-box
+	width: 100%
 	margin-top: 15px
 	align-self: stretch
 	padding: 30px 40px 10px 40px
@@ -118,6 +120,20 @@
 				margin-right: 10px
 				color: #556da5
 				font-size: 15px
+
+.row
+	flex-direction: row
+	justify-content: space-between
+	@media(max-width: 1200px)
+		flex-direction: column
+
+.mainInfoContainerRow
+	&:first-child
+		width: 100%
+		@media(max-width: 1200px)
+			justify-content: center
+			margin-bottom: 1rem
+
 
 .winner
 	background-color: #8aca6b

@@ -8,15 +8,13 @@ import { contestActions, offerActions, chatActions } from '../../../store/action
 import * as Components from '../../';
 import * as CONSTANTS from '../../../constants';
 
-export const OfferBox = ({
-	data, needButtons, setOfferStatus, contestType, date }) => {
+export const OfferBox = ({ data, needButtons, setOfferStatus, contestType }) => {
 
 	const {
 		userStore: { data: { id, role } },
 		chatStore: { messagesPreview },
 	} = useSelector(state => state);
 	const dispatch = useDispatch();
-	const { rating } = data.User;
 
 	const changeShowImage = (data) =>
 		dispatch(contestActions.changeShowImage(data));
@@ -74,26 +72,39 @@ export const OfferBox = ({
 		info: styles.creativeInfoContainer,
 		nameContainer: styles.nameAndEmail
 	}
+
+	const offerContainerClasses = role !== CONSTANTS.APP_CONSTANTS.MODERATOR
+		? styles.offerContainer
+		: styles.offerContainer + ' ' + styles.row
+
+	const mainInfoContainerClasses = role !== CONSTANTS.APP_CONSTANTS.MODERATOR
+		? styles.mainInfoContainer
+		: styles.mainInfoContainer + ' ' + styles.mainInfoContainerRow
+
 	return (
-		<div className={styles.offerContainer}>
+		<div className={offerContainerClasses}>
 			{offerStatus()}
-			<div className={styles.mainInfoContainer}>
-				<div className={styles.userInfo}>
-					<Components.ContestUserInfo
-						data={data.User}
-						flagLogin={false}
-						classes={creativeInfoClasses}
-					/>
-					<div className={styles.creativeRating}>
-						<span className={styles.userScoreLabel}>
-							Creative Rating
-						</span>
-						<Components.RatingComponent
-							initialRating={rating}
-							readonly
-						/>
-					</div>
-				</div>
+			<div className={mainInfoContainerClasses} >
+				{role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+					<>
+						<div className={styles.userInfo}>
+							<Components.ContestUserInfo
+								data={data.User}
+								flagLogin={false}
+								classes={creativeInfoClasses}
+							/>
+							<div className={styles.creativeRating}>
+								<span className={styles.userScoreLabel}>
+									Creative Rating
+								</span>
+								<Components.RatingComponent
+									initialRating={data.User.rating}
+									readonly
+								/>
+							</div>
+						</div>
+					</>
+				}
 				<div className={styles.responseConainer}>
 					{contestType === CONSTANTS.APP_CONSTANTS.LOGO_CONTEST
 						? (<img onClick={() => changeShowImage({
@@ -106,7 +117,7 @@ export const OfferBox = ({
 						/>)
 						: <span className={styles.response}>{data.text}</span>
 					}
-					{data.User.id !== id && (
+					{role !== CONSTANTS.APP_CONSTANTS.MODERATOR && data.User.id !== id && (
 						<Components.RatingComponent
 							onClick={changeMark}
 							placeholderRating={data.mark}
@@ -114,13 +125,15 @@ export const OfferBox = ({
 					)}
 				</div>
 				{role !== CONSTANTS.APP_CONSTANTS.CREATOR &&
-					<i onClick={goChat} className="fas fa-comments" />}
+					role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+					< i onClick={goChat} className="fas fa-comments" />}
 			</div>
 			{needButtons(data.status) &&
 				<Components.OfferSolutionButtons
 					setOfferStatus={setOfferStatus}
 					data={data}
+					role={role}
 				/>}
-		</div>
+		</div >
 	)
 };

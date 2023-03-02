@@ -32,5 +32,8 @@ class ApplicationError extends Error {
 	static ServerError(message, error) {
 		return new ApplicationError(500, message || 'Server error', error);
 	}
+	static MailError(message, error) {
+		return new ApplicationError(513, message || 'Error sending message', error);
+	}
 }
 module.exports = ApplicationError;

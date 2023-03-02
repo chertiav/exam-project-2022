@@ -69,6 +69,8 @@ export { FilterSelectType } from './Dashboard/FilterSections/FilterSelectType';
 export { FilterContestId } from './Dashboard/FilterSections/FilterContestId';
 export { FilterIndustryType } from './Dashboard/FilterSections/FilterIndustryType';
 export { FilterSort } from './Dashboard/FilterSections/FilterSort';
+export { ForMultipleRolesDashbord } from './Dashboard/ForMultipleRolesDashbord/ForMultipleRolesDashbord';
+export { ModeratorDashbord } from './Dashboard/ModeratorDashbord/ModeratorDashbord';
 
 //Contest
 export { Brief } from './Contest/Brief/Brief';

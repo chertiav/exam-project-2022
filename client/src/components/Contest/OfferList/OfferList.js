@@ -44,7 +44,6 @@ export const OfferList = ({ setOfferStatus, needButtons, contestData }) => {
 						needButtons={needButtons}
 						setOfferStatus={setOfferStatus}
 						contestType={contestData.contestType}
-						date={new Date()}
 					/>
 				)
 			}

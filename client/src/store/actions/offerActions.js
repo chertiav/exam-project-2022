@@ -21,11 +21,19 @@ export const setOfferStatusAction = (payload) => ({
 	type: ACTIONS_TYPES.SET_OFFER_STATUS_ACTION,
 	payload,
 });
+export const setOfferStatusModeratorAction = (payload) => ({
+	type: ACTIONS_TYPES.SET_OFFER_STATUS_MODERATOR_ACTION,
+	payload,
+});
 export const setOfferStatusRequest = () => ({
 	type: ACTIONS_TYPES.SET_OFFER_STATUS_REQUEST,
 });
 export const setOfferStatusSuccess = (payload) => ({
 	type: ACTIONS_TYPES.SET_OFFER_STATUS_SUCCESS,
+	payload
+});
+export const setOfferStatusModeratorSuccess = (payload) => ({
+	type: ACTIONS_TYPES.SET_OFFER_STATUS_MODERATOR_SUCCESS,
 	payload
 });
 export const setOfferStatusError = (payload) => ({
@@ -46,6 +54,22 @@ export const addNewOfferSuccess = (payload) => ({
 });
 export const addNewOfferError = (payload) => ({
 	type: ACTIONS_TYPES.ADD_NEW_OFFER_ERROR,
+	payload,
+});
+//deleteOffer
+export const deleteOffersActions = (payload) => ({
+	type: ACTIONS_TYPES.DELETE_OFFER_ACTION,
+	payload,
+});
+export const deleteOffersRequest = () => ({
+	type: ACTIONS_TYPES.DELETE_OFFER_REQUEST,
+});
+export const deleteOffersSuccess = (payload) => ({
+	type: ACTIONS_TYPES.DELETE_OFFER_SUCCESS,
+	payload
+});
+export const deleteOffersError = (payload) => ({
+	type: ACTIONS_TYPES.DELETE_OFFER_ERROR,
 	payload,
 });
 //changeMark

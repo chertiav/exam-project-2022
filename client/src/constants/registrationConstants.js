@@ -43,6 +43,14 @@ export const REGISTRATION_CONSTANTS = {
 			strRole: 'Join As a Creative',
 			infoRole: 'I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.',
 			id: APP_CONSTANTS.CREATOR
+		},
+		{
+			name: 'role',
+			type: 'radio',
+			value: APP_CONSTANTS.MODERATOR,
+			strRole: 'Join As a Moderator',
+			infoRole: 'I plan to moderate offers for contests.',
+			id: APP_CONSTANTS.MODERATOR
 		}
 	],
 	FORM_SERVICE_INPUT_DATA: [

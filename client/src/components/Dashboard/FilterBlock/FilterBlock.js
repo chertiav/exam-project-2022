@@ -16,7 +16,8 @@ export const FilterBlock = () => {
 
 	const {
 		contestsList: { creatorFilter, contests },
-		dataForContest: { isFetching }
+		dataForContest: { isFetching },
+		userStore: { data: { role } }
 	} = useSelector(state => state);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
@@ -50,10 +51,14 @@ export const FilterBlock = () => {
 		if (!isEqual(filter, creatorFilter)) {
 			dispatch(contestActions.setNewCreatorFilter(filter));
 			dispatch(contestActions.clearContestList());
-			dispatch(contestActions.getContestsCreativeAction({ limit, offset: 0, ...filter }));
+			dispatch(
+				role !== CONSTANTS.APP_CONSTANTS.MODERATOR
+					? contestActions.getContestsCreativeAction({ limit, offset: 0, ...filter })
+					: contestActions.getContestsModeratorAction({ limit, offset: 0, ...filter })
+			);
 			return false;
 		} return true;
-	}, [dispatch, creatorFilter, limit]);
+	}, [dispatch, creatorFilter, limit, role]);
 
 	useEffect(() => {
 		dispatch(contestActions.getDataForContestAction());
@@ -76,18 +81,20 @@ export const FilterBlock = () => {
 		<div className={styles.filterContainer}>
 			<span className={styles.headerFilter}>Filter Results</span>
 			<div className={styles.inputsContainer}>
-				<div
-					onClick={() =>
-						changePredicate({
-							name: 'ownEntries',
-							value: !creatorFilter.ownEntries
+				{role === CONSTANTS.APP_CONSTANTS.CREATOR &&
+					<div
+						onClick={() =>
+							changePredicate({
+								name: 'ownEntries',
+								value: !creatorFilter.ownEntries
+							})}
+						className={classNames(styles.myEntries, {
+							[styles.activeMyEntries]: creatorFilter.ownEntries
 						})}
-					className={classNames(styles.myEntries, {
-						[styles.activeMyEntries]: creatorFilter.ownEntries
-					})}
-				>
-					MyEntries
-				</div>
+					>
+						My Entries
+					</div>
+				}
 				<Components.FilterSelectType
 					classes={filterSectionClasses}
 					changePredicate={changePredicate}
@@ -102,10 +109,11 @@ export const FilterBlock = () => {
 						changePredicate={changePredicate}
 					/>
 				)}
-				<Components.FilterSort
-					classes={filterSectionClasses}
-					changePredicate={changePredicate}
-				/>
+				{role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+					<Components.FilterSort
+						classes={filterSectionClasses}
+						changePredicate={changePredicate}
+					/>}
 			</div>
 		</div>
 	)

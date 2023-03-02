@@ -3,9 +3,16 @@ import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 //============================================
 import styles from './OfferSolutionButtons.module.sass';
+import * as CONSTANTS from '../../../constants';
 import './confirmStyle.css';
 
-export const OfferSolutionButtons = ({ setOfferStatus, data }) => {
+export const OfferSolutionButtons = ({ setOfferStatus, data, role }) => {
+
+	const dataResolve = role === CONSTANTS.APP_CONSTANTS.MODERATOR
+		? 'active' : 'resolve';
+
+	const dataReject = role === CONSTANTS.APP_CONSTANTS.MODERATOR
+		? 'delete' : 'reject';
 
 	const solutionForOffer = (solution) => {
 		confirmAlert({
@@ -14,7 +21,7 @@ export const OfferSolutionButtons = ({ setOfferStatus, data }) => {
 			buttons: [
 				{
 					label: 'Yes',
-					onClick: () => setOfferStatus(data.User.id, data.id, solution)
+					onClick: () => setOfferStatus({ offerId: data.id, command: solution, userData: data.User })
 				},
 				{ label: 'No' },
 			],
@@ -24,13 +31,13 @@ export const OfferSolutionButtons = ({ setOfferStatus, data }) => {
 	return (
 		<div className={styles.btnsContainer}>
 			<div
-				onClick={() => solutionForOffer('resolve')}
+				onClick={() => solutionForOffer(dataResolve)}
 				className={styles.resolveBtn}
 			>
 				Resolve
 			</div>
 			<div
-				onClick={() => solutionForOffer('reject')}
+				onClick={() => solutionForOffer(dataReject)}
 				className={styles.rejectBtn}
 			>
 				Reject

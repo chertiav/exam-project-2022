@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 //=============================================
 import styles from './ContestBox.module.sass';
 import * as Components from '../../'
@@ -7,6 +8,7 @@ import * as utils from '../../../utils';
 
 export const ContestBox = ({ data, goToExtended }) => {
 
+	const { userStore: { data: { role } } } = useSelector(state => state);
 	const { id, title, contestType, prize, count, createdAt, typeOfName, brandStyle, typeOfTagline } = data;
 
 	const getPreferenceContest = () => {
@@ -26,23 +28,27 @@ export const ContestBox = ({ data, goToExtended }) => {
 					<div className={styles.contestType}>
 						<span>{`${utils.function.ucFirstLetter(contestType)} / ${getPreferenceContest()}`}</span>
 					</div>
-					<div className={styles.contestType}>
-						<span>This is an Invitation Only Contest and is only open to those Creatives who have achieved a Tier A status.</span>
-					</div>
-					<div className={styles.prizeContainer}>
-						<Components.ContestDescription
-							classesStyle={styles.guaranteedContainer}
-							image={'smallCheck.png'}
-							alt='check'
-							title='Guaranteed prize'
-						/>
-						<Components.ContestDescription
-							classesStyle={styles.prize}
-							image={'diamond.png'}
-							alt='diamond'
-							title={`$${prize}`}
-						/>
-					</div>
+					{role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+						<>
+							<div className={styles.contestType}>
+								<span>This is an Invitation Only Contest and is only open to those Creatives who have achieved a Tier A status.</span>
+							</div>
+							<div className={styles.prizeContainer}>
+								<Components.ContestDescription
+									classesStyle={styles.guaranteedContainer}
+									image={'smallCheck.png'}
+									alt='check'
+									title='Guaranteed prize'
+								/>
+								<Components.ContestDescription
+									classesStyle={styles.prize}
+									image={'diamond.png'}
+									alt='diamond'
+									title={`$${prize}`}
+								/>
+							</div>
+						</>
+					}
 				</div>
 				<div className={styles.entryAndTimeContainer}>
 					<div className={styles.entriesContainer}>

@@ -14,6 +14,7 @@ export const APP_CONSTANTS = {
 		: `http://${serverIP}:${serverPort}/public/images/`,
 	CUSTOMER: 'customer',
 	CREATOR: 'creator',
+	MODERATOR: 'moderator',
 	NAME_CONTEST: 'name',
 	LOGO_CONTEST: 'logo',
 	TAGLINE_CONTEST: 'tagline',
@@ -23,5 +24,6 @@ export const APP_CONSTANTS = {
 	OFFER_STATUS_REJECTED: 'rejected',
 	OFFER_STATUS_WON: 'won',
 	OFFER_STATUS_PENDING: 'pending',
+	OFFER_STATUS_ACTIVE: 'active',
 	PAGE_FOR_HEADER_BLUE: ['/how-it-works'],
 };

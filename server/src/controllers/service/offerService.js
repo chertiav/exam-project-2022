@@ -1,9 +1,10 @@
 const { Offer, sequelize } = require('../../db/models');
 const ApplicationError = require('../../errors/ApplicationError');
-const CONSTANTS = require('../../constants');
+const mailService = require('../mailService/mailService');
 const controller = require('../../socketInit');
 const { updateContestStatus } = require('./contestService');
 const { userService } = require('.');
+const CONSTANTS = require('../../constants');
 
 module.exports.createOffer = async (data, t) => {
 	const result = await Offer.create(data, { transaction: t });
@@ -34,6 +35,13 @@ const updateOfferStatus = async (data, predicate, t) => {
 	}
 };
 
+module.exports.activeOffer = async (offerId, email, t) => {
+	const activatedOffer = await updateOffer(
+		{ status: CONSTANTS.OFFER_STATUS_ACTIVE }, { id: offerId }, t);
+	await mailService.sendMail(email, 'Offer approved by moderator');
+	return activatedOffer;
+};
+
 module.exports.rejectOffer = async (offerId, creatorId, contestId, t) => {
 	const rejectedOffer = await updateOffer(
 		{ status: CONSTANTS.OFFER_STATUS_REJECTED }, { id: offerId }, t);
@@ -49,9 +57,9 @@ module.exports.resolveOffer = async (
 			CASE
 				WHEN "id"=${contestId} AND "orderId"='${orderId}'
 					THEN '${CONSTANTS.CONTEST_STATUS_FINISHED}'
-				WHEN	"orderId"='${orderId}'	AND "priority"=${priority + 1}
+				WHEN	"orderId"='${orderId}' AND "status"='${CONSTANTS.CONTEST_STATUS_PENDING}' AND "priority"=${priority + 1}
 					THEN '${CONSTANTS.CONTEST_STATUS_ACTIVE}'
-				ELSE '${CONSTANTS.CONTEST_STATUS_PENDING}'
+				ELSE "status"
 			END
     `),
 	}, { orderId }, t);

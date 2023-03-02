@@ -1,6 +1,7 @@
 .idea/
 .vscode/
 temp/
+public/
 
 ./client/node_modules
 ./server/node_modules

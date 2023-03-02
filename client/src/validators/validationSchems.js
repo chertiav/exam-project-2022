@@ -19,7 +19,7 @@ const validationSchems = {
 			value && value.trim().length >= 1)).required('Last Name is required'),
 		displayName: yup.string().test('test-displayName', 'required', (value) => (
 			value && value.trim().length >= 1)).required('Display Name is required'),
-		role: yup.string().matches(/(customer|creator)/).required('Role is required'),
+		role: yup.string().matches(/(customer|creator|moderator)/).required('Role is required'),
 		agreeOfTerms: yup.boolean().oneOf([true], 'Must Accept Terms and Conditions')
 			.required('Must Accept Terms and Conditions'),
 	}),

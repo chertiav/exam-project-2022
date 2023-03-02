@@ -28,13 +28,16 @@ export const ContestInfo = ({
 						data={focusOfWork}
 						classes={specialInfoClasses}
 					/>
-					{(User.id === userId && status !== CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_FINISHED) &&
+					{(role !== CONSTANTS.APP_CONSTANTS.MODERATOR &&
+						User.id === userId &&
+						status !== CONSTANTS.APP_CONSTANTS.CONTEST_STATUS_FINISHED) &&
 						<div
 							onClick={() => changeEditContest(true)}
 							className={styles.editBtn}
 						>	Edit
 						</div>}
-					{role !== CONSTANTS.APP_CONSTANTS.CUSTOMER && <i onClick={goChat} className="fas fa-comments" />}
+					{role === CONSTANTS.APP_CONSTANTS.CREATOR &&
+						< i onClick={goChat} className="fas fa-comments" />}
 				</div>
 				<Components.ContestData
 					title={'Title of the Project'}

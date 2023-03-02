@@ -5,15 +5,21 @@ const { loggingError } = require('../utils/errorLogFunction');
 
 module.exports.onlyForCustomer = (req, res, next) => {
 	const { tokenData: { role } } = req;
-	role === CONSTANTS.CREATOR
-		? next(ApplicationError.RightsError('this page only for customers'))
-		: next();
+	role === CONSTANTS.CUSTOMER
+		? next()
+		: next(ApplicationError.RightsError('this page only for customers'));
 };
 module.exports.onlyForCreative = (req, res, next) => {
 	const { tokenData: { role } } = req;
-	role === CONSTANTS.CUSTOMER
-		? next(ApplicationError.RightsError('this page only for creative'))
-		: next();
+	role === CONSTANTS.CREATOR
+		? next()
+		: next(ApplicationError.RightsError('this page only for creative'));
+};
+module.exports.onlyForModerator = (req, res, next) => {
+	const { tokenData: { role } } = req;
+	role === CONSTANTS.MODERATOR
+		? next()
+		: next(ApplicationError.RightsError('this page only for moderator'));
 };
 module.exports.parseBody = (req, res, next) => {
 	try {
@@ -50,6 +56,13 @@ module.exports.canGetContest = async (req, res, next) => {
 							CONSTANTS.CONTEST_STATUS_FINISHED,
 						],
 					},
+				},
+			});
+		} else if (role === CONSTANTS.MODERATOR) {
+			result = await Contest.findOne({
+				where: {
+					id: contestId,
+					status: CONSTANTS.CONTEST_STATUS_ACTIVE,
 				},
 			});
 		}

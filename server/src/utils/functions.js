@@ -20,11 +20,14 @@ module.exports.parseBool = (params) => {
 	);
 };
 module.exports.createWhereAllContests = (
-	typeIndex, contestId, industry, awardSort) => {
+	typeIndex, contestId, industry, awardSort, role) => {
 	const object = {
 		where: {},
 		order: [],
 	};
+	const statusWhere = role === CONSTANTS.MODERATOR
+		? [CONSTANTS.CONTEST_STATUS_ACTIVE]
+		: [CONSTANTS.CONTEST_STATUS_FINISHED, CONSTANTS.CONTEST_STATUS_ACTIVE];
 	if (this.parseBool(typeIndex)) {
 		Object.assign(object.where, {
 			contestType: getPredicateTypes(typeIndex),
@@ -36,16 +39,11 @@ module.exports.createWhereAllContests = (
 	if (this.parseBool(industry)) {
 		Object.assign(object.where, { industry });
 	}
-	if (this.parseBool(awardSort), awardSort) {
+	if (this.parseBool(awardSort)) {
 		object.order.push(['prize', awardSort]);
 	}
 	Object.assign(object.where, {
-		status: {
-			[Sequelize.Op.or]: [
-				CONSTANTS.CONTEST_STATUS_FINISHED,
-				CONSTANTS.CONTEST_STATUS_ACTIVE,
-			],
-		},
+		status: { [Sequelize.Op.or]: statusWhere },
 	});
 	object.order.push(['id', 'desc']);
 	return object;

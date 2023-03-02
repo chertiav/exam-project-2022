@@ -3,10 +3,10 @@ import React from 'react';
 import { contestActions } from '../../../store/actions';
 import * as Components from '../../';
 
-export const CreatorDashboard = () => {
+export const ModeratorDashbord = () => {
 	return (
 		<Components.ForMultipleRolesDashbord
-			action={contestActions.getContestsCreativeAction}
+			action={contestActions.getContestsModeratorAction}
 		/>
 	);
 };
