@@ -15,6 +15,12 @@ docker restart exam-project-db-dev-1
 docker restart exam-project-server-dev-1
 echo "<----- Restart containers is done"
 
+
+# Run Sequalize's create.
+echo "-----> Running application create"
+docker exec -it exam-project-server-dev-1 npx sequelize db:create
+echo "<----- Create is done"
+
 # Run Sequalize's migrations.
 echo "-----> Running application migrations"
 docker exec -it exam-project-server-dev-1 npx sequelize db:migrate
